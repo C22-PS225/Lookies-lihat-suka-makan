@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Lookies</string>
+    <string name="logosplash">Lookies</string>
+    <string name="welcome">Lihat, Suka, Makan</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="username_error">Enter username</string>
+    <string name="password">Password</string>
+    <string name="pass_message">Password less than 6 characters</string>
+    <string name="password_error">Enter password</string>
+
+    <string-array name="data_name">
+        <item>Dadar Gulung Ubi Ungu</item>
+        <item>Dadar Gulung Ubi Ungu</item>
+        <item>Dadar Gulung Ubi Ungu</item>
+        <item>Dadar Gulung Ubi Ungu</item>
+        <item>Dadar Gulung Ubi Ungu</item>
+        <item>Dadar Gulung Ubi Ungu</item>
+        <item>Dadar Gulung Ubi Ungu</item>
+        <item>Dadar Gulung Ubi Ungu</item>
+        <item>Dadar Gulung Ubi Ungu</item>
+    </string-array>
+    <string-array name="data_description">
+        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
+        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
+        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
+        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
+        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
+        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
+        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
+        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
+        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
+    </string-array>
+    <integer-array name="data_photo">
+        <item>@drawable/dadargulungubiungu</item>
+        <item>@drawable/dadargulungubiungu</item>
+        <item>@drawable/dadargulungubiungu</item>
+        <item>@drawable/dadargulungubiungu</item>
+        <item>@drawable/dadargulungubiungu</item>
+        <item>@drawable/dadargulungubiungu</item>
+        <item>@drawable/dadargulungubiungu</item>
+        <item>@drawable/dadargulungubiungu</item>
+        <item>@drawable/dadargulungubiungu</item>
+
+    </integer-array>
+
+</resources>

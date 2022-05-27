@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:fabCradleMargin="10dp"
+        app:fabCradleRoundedCornerRadius="10dp"
+        >
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/myBottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            app:menu="@menu/bottom_nav_menu"/>
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/myFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_camera"
+        app:layout_anchor="@id/bottomAppBar"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/lookies"
+        app:civ_border_color="@color/magenta"
+        app:civ_border_width="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="24dp"
+        android:text="Hi, Immanuel Sindu"
+        android:textColor="@color/magenta"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What are you looking for today? :)"
+        android:textColor="@color/magenta"
+        android:textSize="13sp"
+        android:textStyle="italic"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="50dp"
+   />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginStart="330dp"
+        android:src="@drawable/favorite"
+         />
+
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-490dp"
+        android:background="@drawable/searchview_background"
+        android:elevation="8dp"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:queryBackground="@android:color/transparent"
+        app:queryHint="Search here" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="-210dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
+
+        <ImageView
+            android:id="@+id/imageBanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/klepon" />
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/llSpecial"
+        android:layout_width="350dp"
+        android:layout_height="280dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="370dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spesial For You ~"
+            android:textColor="@color/magenta"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.123"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/dark_purple" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcyViewSpesialForYou"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/llSpecial2"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="280dp"-->
+<!--        app:layout_anchor="margin"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/cardView">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Spesial For You ~"-->
+<!--            android:textColor="@color/magenta"-->
+<!--            android:textSize="22dp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.123"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/cardView" />-->
+
+<!--        <View-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginStart="45dp"-->
+<!--            android:background="@color/dark_purple" />-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rcyViewSpesialForYou2"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--    </LinearLayout>-->
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
