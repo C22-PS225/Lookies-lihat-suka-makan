@@ -12,14 +12,18 @@ import com.example.lookies.databinding.ActivityCameraAcitivityBinding
 
 private var imageCapture: ImageCapture? = null
 private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
+private lateinit var binding: ActivityCameraAcitivityBinding
 class CameraActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityCameraAcitivityBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraAcitivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        this.supportActionBar?.hide()
+        startCamera()
+
+
 
     }
 
@@ -45,9 +49,10 @@ class CameraActivity : AppCompatActivity() {
                     preview,
                     imageCapture
                 )
+
             } catch (exc: Exception) {
                 Toast.makeText(
-                    this,
+                    this@CameraActivity,
                     "Gagal memunculkan kamera.",
                     Toast.LENGTH_SHORT
                 ).show()
