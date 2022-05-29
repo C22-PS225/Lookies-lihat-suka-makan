@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/galleryButton"
         android:layout_width="140dp"
         android:layout_height="60dp"
         android:layout_marginBottom="10dp"
@@ -62,7 +62,7 @@
         android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -76,7 +76,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        app:layout_constraintStart_toEndOf="@+id/galleryButton" />
 
     <Button
         android:id="@+id/button2"
@@ -91,7 +91,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txtSuggestion"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:elevation="8dp"
@@ -102,7 +102,7 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.279"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/previewImageView"
         app:layout_constraintVertical_bias="0.148" />
@@ -110,13 +110,13 @@
     <ImageView
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="8dp"
         android:elevation="8dp"
         android:rotation="-20"
         android:src="@drawable/lookies"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/previewImageView"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintStart_toEndOf="@+id/txtSuggestion"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.789" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,8 +2,10 @@ package com.example.lookies
 
 import android.Manifest
 import android.content.Intent
+import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -28,9 +30,28 @@ class PreCameraCapture : AppCompatActivity() {
             )
 
             binding.btnOpenCamera.text = "Retake Photo"
+            binding.txtSuggestion.text = "Ready to meet your new favorite snack?"
             binding.previewImageView.setImageBitmap(result)
 
         }
+    }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val selectedImg: Uri = result.data?.data as Uri
+            val myFile = uriToFile(selectedImg, this)
+            binding.previewImageView.setImageURI(selectedImg)
+        }
+    }
+
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = ACTION_GET_CONTENT
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
     }
 
     companion object {
@@ -76,6 +97,8 @@ class PreCameraCapture : AppCompatActivity() {
         binding.btnOpenCamera.setOnClickListener {
             startCameraX()
         }
+
+        binding.galleryButton.setOnClickListener { startGallery() }
     }
 
     private fun startCameraX() {
