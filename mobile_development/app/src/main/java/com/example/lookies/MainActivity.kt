@@ -1,7 +1,8 @@
 package com.example.lookies
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lookies.databinding.ActivityMainBinding
@@ -28,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 
         list.addAll(listSpecial)
         showRecyclerList()
+
+        binding.myFabCamera.setOnClickListener{
+            var intent = Intent(this, PreCameraCapture::class.java)
+            startActivity(intent)
+        }
     }
 
     private val listSpecial: ArrayList<SpecialForYou>
