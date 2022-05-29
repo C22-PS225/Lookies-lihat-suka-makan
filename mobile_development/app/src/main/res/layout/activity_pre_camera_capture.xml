@@ -60,7 +60,7 @@
         android:layout_marginBottom="10dp"
         android:text="Open Gallery"
         android:textSize="13sp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/btnContinue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="parent" />
@@ -73,13 +73,13 @@
         android:layout_marginBottom="10dp"
         android:text="Open Camera"
         android:textSize="13sp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/btnContinue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/galleryButton" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnContinue"
         android:layout_width="120dp"
         android:layout_height="45dp"
         android:layout_marginBottom="16dp"

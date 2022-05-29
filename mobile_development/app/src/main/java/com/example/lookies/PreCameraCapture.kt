@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -15,8 +16,10 @@ import androidx.core.content.ContextCompat
 import com.example.lookies.databinding.ActivityPreCameraCaptureBinding
 import java.io.File
 
+
 class PreCameraCapture : AppCompatActivity() {
     private lateinit var binding: ActivityPreCameraCaptureBinding
+    private lateinit var result: Bitmap
 
     private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -24,7 +27,7 @@ class PreCameraCapture : AppCompatActivity() {
         if (it.resultCode == CAMERA_X_RESULT) {
             val myFile = it.data?.getSerializableExtra("picture") as File
             val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
-            val result = rotateBitmap(
+            result = rotateBitmap(
                 BitmapFactory.decodeFile(myFile.path),
                 isBackCamera
             )
@@ -99,6 +102,20 @@ class PreCameraCapture : AppCompatActivity() {
         }
 
         binding.galleryButton.setOnClickListener { startGallery() }
+        binding.btnContinue.setOnClickListener {
+            if(result != null){
+                val intent = Intent(this, dummyResultCamera::class.java)
+                intent.putExtra("BitmapImage", result)
+                startActivity(intent)
+            }else{
+                Toast.makeText(
+                    this,
+                    "Please enter a photo first",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+        }
     }
 
     private fun startCameraX() {
