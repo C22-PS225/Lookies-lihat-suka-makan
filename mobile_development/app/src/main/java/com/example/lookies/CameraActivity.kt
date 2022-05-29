@@ -2,6 +2,7 @@ package com.example.lookies
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
@@ -25,6 +26,7 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraAcitivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         this.supportActionBar?.hide()
+
         startCamera()
 
         binding.captureImage.setOnClickListener { takePhoto() }
@@ -38,6 +40,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun takePhoto() {
+        showLoading(true)
         val imageCapture = imageCapture ?: return
         val photoFile = createFile(application)
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
@@ -60,7 +63,10 @@ class CameraActivity : AppCompatActivity() {
                         cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
                     )
                     setResult(PreCameraCapture.CAMERA_X_RESULT, intent)
+
                     finish()
+
+
 
                 }
             }
@@ -98,6 +104,14 @@ class CameraActivity : AppCompatActivity() {
                 ).show()
             }
         }, ContextCompat.getMainExecutor(this))
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
     }
 
 

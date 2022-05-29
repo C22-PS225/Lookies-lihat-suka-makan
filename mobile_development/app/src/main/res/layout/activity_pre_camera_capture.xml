@@ -22,7 +22,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="50dp"
         android:text="Let's take a photo of your snack first"
         android:textColor="@color/magenta"
         android:textSize="22sp"
@@ -56,27 +56,27 @@
     <Button
         android:id="@+id/button"
         android:layout_width="140dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
         android:text="Open Gallery"
         android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/previewImageView" />
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnOpenCamera"
         android:layout_width="140dp"
-        android:layout_height="45dp"
+        android:layout_height="60dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:text="Open Camera"
         android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toEndOf="@+id/button" />
 
     <Button
         android:id="@+id/button2"
@@ -94,27 +94,29 @@
         android:id="@+id/textView3"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
-        android:layout_marginBottom="41dp"
         android:elevation="8dp"
         android:text="Make sure the picture you take is clear like the picture above, yaw ~"
         android:textAlignment="center"
         android:textColor="@color/magenta"
+        android:textSize="14sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/previewImageView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.148" />
 
     <ImageView
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginStart="27dp"
         android:elevation="8dp"
         android:rotation="-20"
         android:src="@drawable/lookies"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/previewImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/previewImageView"
+        app:layout_constraintVertical_bias="0.07999998" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

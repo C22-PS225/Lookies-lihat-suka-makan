@@ -29,6 +29,7 @@ class PreCameraCapture : AppCompatActivity() {
 
             binding.btnOpenCamera.text = "Retake Photo"
             binding.previewImageView.setImageBitmap(result)
+
         }
     }
 
