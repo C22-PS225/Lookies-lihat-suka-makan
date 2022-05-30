@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Lookies"
         tools:targetApi="31">
         <activity
+            android:name=".CameraResultPage"
+            android:exported="false" />
+        <activity
             android:name=".dummyResultCamera"
             android:exported="false" />
         <activity
