@@ -8,6 +8,8 @@
     <string name="password">Password</string>
     <string name="pass_message">Password less than 6 characters</string>
     <string name="password_error">Enter password</string>
+    <string name="question">Is this what you\'re looking for?</string>
+    <string name="cakes">Cakes</string>
 
     <string-array name="data_name">
         <item>Dadar Gulung Ubi Ungu</item>
