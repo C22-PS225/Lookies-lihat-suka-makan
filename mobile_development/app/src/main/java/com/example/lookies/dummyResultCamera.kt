@@ -1,7 +1,6 @@
 package com.example.lookies
 
 import android.graphics.Bitmap
-import android.media.ThumbnailUtils
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lookies.databinding.ActivityDummyResultCameraBinding
@@ -10,7 +9,6 @@ import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
-import kotlin.math.min
 
 
 class dummyResultCamera : AppCompatActivity() {
@@ -18,6 +16,7 @@ class dummyResultCamera : AppCompatActivity() {
 
     companion object{
         var imageSize = 150
+        private const val TAG = "dummyResultCamera"
         private const val IMAGE_BITMAP = "BitmapImage"
     }
 
@@ -30,6 +29,7 @@ class dummyResultCamera : AppCompatActivity() {
         this.supportActionBar?.hide()
         val imageFromIntent = intent.getParcelableExtra<bitmapImage>(IMAGE_BITMAP) as bitmapImage
         binding.previewImageView.setImageBitmap(imageFromIntent.img)
+        classifyImage(imageFromIntent.img!!)
 //        imageFromIntent.img?.let {
 //            classifyImage(it)
 //        }
@@ -47,9 +47,9 @@ class dummyResultCamera : AppCompatActivity() {
     }
 
     private fun classifyImage(image: Bitmap){
-        var dimension = min(image.width, image.height)
-        var newImage = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
-        newImage = Bitmap.createScaledBitmap(newImage, imageSize, imageSize, false)
+//        var dimension = min(image.width, image.height)
+//        var newImage = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
+//        newImage = Bitmap.createScaledBitmap(newImage, imageSize, imageSize, false)
 
         val model = TfliteModel.newInstance(this)
 
@@ -58,19 +58,21 @@ class dummyResultCamera : AppCompatActivity() {
         var byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3)
         byteBuffer.order(ByteOrder.nativeOrder())
 
-        var intValues = intArrayOf(imageSize * imageSize)
-        newImage.getPixels(intValues, 0, newImage.width, 0,0,newImage.width, newImage.height)
+        val intValues = IntArray(imageSize * imageSize)
+        image.getPixels(intValues, 0, image.width, 0,0,image.width, image.height)
         var pixel = 0;
-        for (i in 0..imageSize) {
-            for (j in 0..imageSize){
+//        Log.d(TAG, "Ukuran imageSize = $imageSize")
+        for (i in 0 until imageSize) {
+//            Log.d(TAG, "Ini adalah iiii = "+i)
+            for (j in 0 until imageSize) {
+//                Log.d(TAG, "Ini adalah j = "+ j)
                 var value = intValues[pixel++]
                 byteBuffer.putFloat(((value shr 16) and  0xFF) * (1f/1))
                 byteBuffer.putFloat(((value shr 8) and  0xFF) * (1f/1))
                 byteBuffer.putFloat((value  and  0xFF) * (1f/1))
             }
         }
-
-
+//        Log.d(TAG, "Perulangan selesai")
         inputFeature0.loadBuffer(byteBuffer)
 
         // Runs model inference and gets result.
@@ -79,10 +81,13 @@ class dummyResultCamera : AppCompatActivity() {
         val confidences = outputFeature0.floatArray
         var maxPosition = 0
         var maxConfidence = 0f
-        for (i in 0..confidences.size){
-            maxConfidence = confidences[i]
-            maxPosition = i
+        for (i in confidences.indices){
+            if(confidences[i] > maxConfidence){
+                maxConfidence = confidences[i]
+                maxPosition = i
+            }
         }
+
 
         val classes = arrayOf("kue_ape","kue_bika_ambon","kue_cenil","kue_dadar_gulung","kue_gethuk_lindri","kue_kastengel","kue_klepon","kue_lapis","kue_lemper","kue_lumpur","kue_nagasari","kue_pastel","kue_putri_salju","kue_putu_ayu","kue_risoles","kue_serabi" )
 
