@@ -8,14 +8,13 @@ import android.graphics.BitmapFactory
 import android.media.ThumbnailUtils
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.lookies.databinding.ActivityPreCameraCaptureBinding
-import java.io.ByteArrayOutputStream
 import java.io.File
 import kotlin.math.min
 
@@ -55,12 +54,14 @@ class PreCameraCapture : AppCompatActivity() {
 
     private val launcherIntentGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == RESULT_OK) {
-            selectedImg = result.data?.data as Uri
+    ) { it ->
+        if (it.resultCode == RESULT_OK) {
+            selectedImg = it.data?.data as Uri
             val myFile = uriToFile(selectedImg!!, this)
             binding.previewImageView.setImageURI(selectedImg)
+            result = null
         }
+
     }
 
     private fun startGallery() {
@@ -106,7 +107,9 @@ class PreCameraCapture : AppCompatActivity() {
                 REQUEST_CODE_PERMISSIONS
             )
         }
-
+        binding.imgBackButton.setOnClickListener{
+            finish()
+        }
         binding.btnOpenCamera.setOnClickListener {
             startCameraX()
         }
@@ -115,45 +118,35 @@ class PreCameraCapture : AppCompatActivity() {
 
         binding.btnContinue.setOnClickListener {
 
-            var dimension = min(result!!.width, result!!.height)
-            var newImage = ThumbnailUtils.extractThumbnail(result, dimension, dimension)
-            newImage = Bitmap.createScaledBitmap(newImage,
-                dummyResultCamera.imageSize,
-                dummyResultCamera.imageSize, false)
-//            binding.previewImageView.setImageBitmap(result)
-            Log.d(TAG, "Ukuran original = " + sizeOf(newImage!!))
+            if(result != null){
+                val dimension: Int = min(result!!.width, result!!.height)
+                var newImage = ThumbnailUtils.extractThumbnail(result, dimension, dimension)
+                newImage = Bitmap.createScaledBitmap(newImage,
+                    dummyResultCamera.imageSize,
+                    dummyResultCamera.imageSize, false)
+                val imageToSend = bitmapImage(newImage)
+                val intent = Intent(this, dummyResultCamera::class.java)
+                intent.putExtra(IMAGE_BITMAP,imageToSend)
+                startActivity(intent)
+            }else if(selectedImg != null){
+                val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImg)
 
-            val imageToSend = bitmapImage(newImage)
-            val intent = Intent(this, dummyResultCamera::class.java)
-            intent.putExtra(IMAGE_BITMAP,imageToSend)
-            startActivity(intent)
-
-//            val bitmap = Bitmap.createScaledBitmap(capturedImage, width, height, true)
-
-//            result = compressBitmap(result!!,5)
-//            Log.d(TAG, "Ukuran original = " + sizeOf(result!!))
-//            binding.previewImageView.setImageBitmap(result)
-
-
-//            if(result != null || selectedImg != null){
-//
-//                //ini cuman bisa kalau dapat foto dari kamera
-//                val imgToSend = bitmapImage(result?.let { it1 -> compressBitmap(it1) })
-//                Log.d(TAG, "Ukuran original = " + sizeOf(compressBitmap(result!!)))
-//                val intent = Intent(this, dummyResultCamera::class.java)
-//                intent.putExtra(IMAGE_BITMAP,imgToSend)
-//
-//                startActivity(intent)
-
-//
-//            }else{
-//                Toast.makeText(
-//                    this,
-//                    "Please enter a photo first",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-
+                val dimension: Int = min(bitmap!!.width, bitmap!!.height)
+                var newImage = ThumbnailUtils.extractThumbnail(bitmap, dimension, dimension)
+                newImage = Bitmap.createScaledBitmap(newImage,
+                    dummyResultCamera.imageSize,
+                    dummyResultCamera.imageSize, false)
+                val imageToSend = bitmapImage(newImage)
+                val intent = Intent(this, dummyResultCamera::class.java)
+                intent.putExtra(IMAGE_BITMAP,imageToSend)
+                startActivity(intent)
+            }else{
+                Toast.makeText(
+                    this,
+                    "Put a photo first",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 
@@ -162,15 +155,4 @@ class PreCameraCapture : AppCompatActivity() {
         launcherIntentCameraX.launch(intent)
     }
 
-
-    fun sizeOf(data: Bitmap): Int {
-        return data.allocationByteCount
-    }
-
-    private fun compressBitmap(bitmap:Bitmap, quality:Int=5):Bitmap{
-        val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, quality, stream)
-        val byteArray = stream.toByteArray()
-        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
-    }
 }
