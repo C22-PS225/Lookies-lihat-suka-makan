@@ -3,7 +3,6 @@ package com.example.lookies
 import android.graphics.Bitmap
 import android.media.ThumbnailUtils
 import android.os.Bundle
-import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lookies.databinding.ActivityDummyResultCameraBinding
 import com.example.lookies.ml.TfliteModel
@@ -18,7 +17,8 @@ class dummyResultCamera : AppCompatActivity() {
     private lateinit var binding: ActivityDummyResultCameraBinding
 
     companion object{
-        private var imageSize = 150;
+        var imageSize = 150
+        private const val IMAGE_BITMAP = "BitmapImage"
     }
 
 
@@ -27,12 +27,21 @@ class dummyResultCamera : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDummyResultCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        this.supportActionBar?.hide()
+        val imageFromIntent = intent.getParcelableExtra<bitmapImage>(IMAGE_BITMAP) as bitmapImage
+        binding.previewImageView.setImageBitmap(imageFromIntent.img)
+//        imageFromIntent.img?.let {
+//            classifyImage(it)
+//        }
 
-        var resultImage = intent.getParcelableExtra<Parcelable>("BitmapImage") as Bitmap?
-        if(resultImage != null){
-            binding.previewImageView.setImageBitmap(resultImage)
-            classifyImage(resultImage)
-        }
+//        var resultImage = intent.getParcelableArrayExtra("BitmapImage")
+//        if (resultImage != null) {
+//            resultImage = arrayOf(resultImage[0])
+//        }
+//        if(resultImage != null){
+//            binding.previewImageView.setImageBitmap(resultImage)
+//            classifyImage(resultImage)
+//        }
 
 //        val bitmap = intent.getParcelableExtra<Parcelable>("BitmapImage") as Bitmap?
     }
@@ -75,6 +84,11 @@ class dummyResultCamera : AppCompatActivity() {
             maxPosition = i
         }
 
+        val classes = arrayOf("kue_ape","kue_bika_ambon","kue_cenil","kue_dadar_gulung","kue_gethuk_lindri","kue_kastengel","kue_klepon","kue_lapis","kue_lemper","kue_lumpur","kue_nagasari","kue_pastel","kue_putri_salju","kue_putu_ayu","kue_risoles","kue_serabi" )
+
+        binding.txtSnackName.text = classes[maxPosition]
+
+//        {'kue_ape': 0, 'kue_bika_ambon': 1, 'kue_cenil': 2, 'kue_dadar_gulung': 3, 'kue_gethuk_lindri': 4, 'kue_kastengel': 5, 'kue_klepon': 6, 'kue_lapis': 7, 'kue_lemper': 8, 'kue_lumpur': 9, 'kue_nagasari': 10, 'kue_pastel': 11, 'kue_putri_salju': 12, 'kue_putu_ayu': 13, 'kue_risoles': 14, 'kue_serabi': 15}
 
         // Releases model resources if no longer used.
         model.close()
