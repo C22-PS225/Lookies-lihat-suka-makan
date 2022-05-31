@@ -10,6 +10,9 @@
     <string name="password_error">Enter password</string>
     <string name="question">Is this what you\'re looking for?</string>
     <string name="cakes">Cakes</string>
+    <string name="app_label">\@Lookies2022</string>
+    <string name="create">Click here</string>
+    <string name="acc">Don\'t have an account?</string>
 
     <string-array name="data_name">
         <item>Dadar Gulung Ubi Ungu</item>
