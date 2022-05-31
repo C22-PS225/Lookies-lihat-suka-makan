@@ -1,0 +1,16 @@
+kue_ape
+kue_bika_ambon
+kue_cenil
+kue_dadar_gulung
+kue_gethuk_lindri
+kue_kastengel
+kue_klepon
+kue_lapis
+kue_lemper
+kue_lumpur
+kue_nagasari
+kue_pastel
+kue_putri_salju
+kue_putu_ayu
+kue_risoles
+kue_serabi
