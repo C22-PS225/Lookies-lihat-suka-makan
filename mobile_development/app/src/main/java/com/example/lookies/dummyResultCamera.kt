@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.lookies.databinding.ActivityDummyResultCameraBinding
 import com.example.lookies.ml.TfliteModel
 import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -82,51 +81,6 @@ class dummyResultCamera : AppCompatActivity() {
         val arrayKue = inputString.split("\n")
 
         binding.txtSnackName.text = arrayKue[maxPosition]
-        model.close()
-    }
-
-    private fun classifyImage2(image: Bitmap){
-        val model = TfliteModel.newInstance(this)
-
-        val newBitmap = image.copy(Bitmap.Config.ARGB_8888, true)
-        val tfimage = TensorImage.fromBitmap(newBitmap)
-
-
-
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 150, 150, 3), DataType.FLOAT32)
-        var byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3)
-        byteBuffer.order(ByteOrder.nativeOrder())
-
-        val intValues = IntArray(imageSize * imageSize)
-        image.getPixels(intValues, 0, image.width, 0,0,image.width, image.height)
-
-        var pixel = 0;
-        for (i in 0 until imageSize) {
-            for (j in 0 until imageSize) {
-                var value = intValues[pixel++]
-                byteBuffer.putFloat(((value shr 16) and  0xFF) * (1f/1))
-                byteBuffer.putFloat(((value shr 8) and  0xFF) * (1f/1))
-                byteBuffer.putFloat((value  and  0xFF) * (1f/1))
-            }
-        }
-        inputFeature0.loadBuffer(byteBuffer)
-
-        val outputs = model.process(inputFeature0)
-        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-        val confidences = outputFeature0.floatArray
-        var maxPosition = 0
-        var maxConfidence = 0f
-        for (i in confidences.indices){
-            Log.d(TAG,"Ini merupakan confidence " + i + " = "+ confidences[i])
-            if(confidences[i] > maxConfidence){
-                maxConfidence = confidences[i]
-                maxPosition = i
-            }
-        }
-        Log.d(TAG,"LOKASI CONFIDENCES " + maxPosition + " = "+ confidences[maxPosition])
-
-        val classes = arrayOf("kue_ape","kue_bika_ambon","kue_cenil","kue_dadar_gulung","kue_gethuk_lindri","kue_kastengel","kue_klepon","kue_lapis","kue_lemper","kue_lumpur","kue_nagasari","kue_pastel","kue_putri_salju","kue_putu_ayu","kue_risoles","kue_serabi" )
-        binding.txtSnackName.text = classes[maxPosition]
         model.close()
     }
 
