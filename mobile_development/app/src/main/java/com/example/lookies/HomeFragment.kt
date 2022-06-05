@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.lookies.databinding.FragmentHomeBinding
 
 
 private const val ARG_PARAM1 = "param1"
@@ -12,9 +15,24 @@ private const val ARG_PARAM2 = "param2"
 
 
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var rcySpecialForYou: RecyclerView
+    private lateinit var rcySpecialForYou2: RecyclerView
+    private val list = ArrayList<SpecialForYou>()
+
+    companion object {
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            HomeFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
+            }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,17 +46,40 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        rcySpecialForYou = root.findViewById(R.id.rcyViewSpesialForYou)
+        rcySpecialForYou.setHasFixedSize(true)
+        rcySpecialForYou2 = root.findViewById(R.id.rcyViewSpesialForYou2)
+        rcySpecialForYou.setHasFixedSize(true)
+
+        list.addAll(listSpecial)
+        showRecyclerList()
+
+        return root
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private val listSpecial: ArrayList<SpecialForYou>
+        get() {
+            val dataName = resources.getStringArray(R.array.data_name)
+            val dataDescription = resources.getStringArray(R.array.data_description)
+            val dataPhoto = resources.obtainTypedArray(R.array.data_photo)
+            val listHero = ArrayList<SpecialForYou>()
+            for (i in dataName.indices) {
+                val hero = SpecialForYou(dataName[i],dataDescription[i], dataPhoto.getResourceId(i, -1))
+                listHero.add(hero)
             }
+            return listHero
+        }
+
+    private fun showRecyclerList() {
+        rcySpecialForYou.layoutManager = LinearLayoutManager(requireActivity())
+        val listHeroAdapter = ListSpecialForYouAdapter(list)
+        rcySpecialForYou.adapter = listHeroAdapter
+
+        rcySpecialForYou2.layoutManager = LinearLayoutManager(requireActivity())
+        val listHeroAdapter2 = ListSpecialForYouAdapter(list)
+        rcySpecialForYou2.adapter = listHeroAdapter2
     }
 }
