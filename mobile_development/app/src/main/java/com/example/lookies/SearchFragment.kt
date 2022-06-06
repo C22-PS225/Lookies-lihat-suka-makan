@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.lookies.databinding.FragmentSearchBinding
 
 
@@ -18,6 +19,9 @@ class SearchFragment : Fragment() {
     private var param2: String? = null
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
+    private var mFragmentManager: FragmentManager? = null
+    private var fragment: Fragment? = null
+
 
 
     companion object {
@@ -46,12 +50,12 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val mFragmentManager = parentFragmentManager
+        mFragmentManager = parentFragmentManager
+        fragment = mFragmentManager!!.findFragmentByTag(HomeFragment::class.java.simpleName)
         val searchPage = SearchPageFragment()
-        val fragment = mFragmentManager.findFragmentByTag(HomeFragment::class.java.simpleName)
 
         if (fragment !is HomeFragment) {
-            mFragmentManager
+            mFragmentManager!!
                 .beginTransaction()
                 .add(R.id.frame_container, searchPage, HomeFragment::class.java.simpleName)
                 .commit()
@@ -61,6 +65,14 @@ class SearchFragment : Fragment() {
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Toast.makeText(context, "Mencari "+binding.mySearchView.query, Toast.LENGTH_LONG).show()
+                val searchPageTwo = SearchPageFragmentTwo()
+//
+//                if (fragment !is HomeFragment) {
+//                    mFragmentManager!!
+//                        .beginTransaction()
+//                        .add(R.id.frame_container, searchPageTwo, HomeFragment::class.java.simpleName)
+//                        .commit()
+//                }
                 return false
             }
 
