@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.lookies.databinding.FragmentSearchBinding
 
@@ -54,6 +56,19 @@ class SearchFragment : Fragment() {
                 .add(R.id.frame_container, searchPage, HomeFragment::class.java.simpleName)
                 .commit()
         }
+
+        binding.mySearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Toast.makeText(context, "Mencari "+binding.mySearchView.query, Toast.LENGTH_LONG).show()
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                //do semothing
+                return false
+            }
+        })
 
         return root
     }
