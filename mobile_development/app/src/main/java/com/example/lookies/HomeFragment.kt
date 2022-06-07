@@ -1,9 +1,12 @@
 package com.example.lookies
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -56,6 +59,24 @@ class HomeFragment : Fragment() {
 
         list.addAll(listSpecial)
         showRecyclerList()
+
+        binding.mySearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Toast.makeText(context, "Mencari "+binding.mySearchView.query, Toast.LENGTH_LONG).show()
+                val intent = Intent(requireContext(), SearchPage::class.java)
+                startActivity(intent)
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                //do semothing
+                return false
+            }
+        })
+
+
 
         return root
     }

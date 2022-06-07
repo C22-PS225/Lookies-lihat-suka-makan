@@ -1,5 +1,6 @@
 package com.example.lookies
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -65,14 +66,9 @@ class SearchFragment : Fragment() {
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Toast.makeText(context, "Mencari "+binding.mySearchView.query, Toast.LENGTH_LONG).show()
-                val searchPageTwo = SearchPageFragmentTwo()
-//
-//                if (fragment !is HomeFragment) {
-//                    mFragmentManager!!
-//                        .beginTransaction()
-//                        .add(R.id.frame_container, searchPageTwo, HomeFragment::class.java.simpleName)
-//                        .commit()
-//                }
+                val intent = Intent(requireContext(), SearchPage::class.java)
+                startActivity(intent)
+
                 return false
             }
 
