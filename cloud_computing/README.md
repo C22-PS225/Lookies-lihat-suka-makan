@@ -1,6 +1,19 @@
+# Process in Cloud Computing
+
+![Untitled Diagram drawio](https://user-images.githubusercontent.com/89336327/172532640-8df61d43-145b-4f89-ab3f-294e4e6085f5.png)
+
+# API Endpoint 
+|   Endpoint   |   Method   |        Body Sent (JSON)         |                 Description                |
+| :----------: | :--------: | :----------------------------:  | :----------------------------------------: |
+|     /        |     GET    |             None                |           Testing Endpoint & Server        |
+|   /login     | POST & GET |      username & password        |            Authentication for user         |
+|  /register   |    POST    | username, password, email, nama |             Registration for user          |
+| /predictkue  |    POST    |        file: Image file         |    HTTP POST REQUEST Prediction Endpoint   |
+|/kue/nama_kue |     GET    |             None                | Give the response about cake's description |
+
 # How to predict image with Postman
 - Open Postman
-- Enter URL request bar with `34.101.56.8:8080/predictkue`
+- Enter URL request bar with `34.101.244.156:8080/predictkue`
 - Select method POST
 - Go to Body tab and select form-data
 - Change key from form-data with file (it must be named `file`)
