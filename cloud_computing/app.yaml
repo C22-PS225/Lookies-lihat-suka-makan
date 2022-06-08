@@ -2,12 +2,12 @@
 runtime: python37
 
 env_variables:
-  MYSQL_HOST: "10.111.208.2"
-  MYSQL_UNIX_SOCKET: "/cloudsql/suksesatu:asia-southeast2:berhasil"
+  MYSQL_HOST: "10.84.112.2"
+  MYSQL_UNIX_SOCKET: "/cloudsql/lookies-352703:asia-southeast2:berhasil"
   MYSQL_USER: "bisa"
   MYSQL_PASSWORD: "bisa"
   MYSQL_DB: "lookies"
   MYSQL_CURSORCLASS: "DictCursor"
 
 vpc_access_connector:
-  name: "projects/suksesatu/locations/asia-southeast2/connectors/connect-to-sql"
+  name: "projects/lookies-352703/locations/asia-southeast2/connectors/connect-to-sql"

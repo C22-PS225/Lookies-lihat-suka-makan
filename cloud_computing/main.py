@@ -12,8 +12,8 @@ app = Flask(__name__)
 api = Api(app)
 app.secret_key = "INI RAHASIA"
 
-app.config['MYSQL_HOST'] = "10.111.208.2"
-app.config['MYSQL_UNIX_SOCKET'] = "/cloudsql/suksesatu:asia-southeast2:berhasil"
+app.config['MYSQL_HOST'] = "10.84.112.2"
+app.config['MYSQL_UNIX_SOCKET'] = "/cloudsql/lookies-352703:asia-southeast2:berhasil"
 app.config['MYSQL_USER'] = 'bisa'
 app.config['MYSQL_PASSWORD'] = 'bisa'
 app.config['MYSQL_DB'] = 'lookies'
@@ -107,7 +107,7 @@ class predict(Resource):
 
 api.add_resource(RegisterUser, "/register", methods=["POST"])
 api.add_resource(LoginUser, "/login", methods=["POST", "GET"])
-api.add_resource(kue, "/hasilml/<string:hasil_ML>", methods=["GET"])
+api.add_resource(kue, "/kue/<string:hasil_ML>", methods=["GET"])
 api.add_resource(resep, "/resep/<string:hasil_ML>", methods=["GET"])
 api.add_resource(predict, "/predictkue", methods=["POST"])
 #jalankan aplikasi
