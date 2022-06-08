@@ -1,3 +1,10 @@
+# Cloud Computing Job Desk
+
+- Deploy model Machine Learning on Google Cloud Platform at Compute Engine
+- Create connector using Serverless VPC Access
+- Create SQL instance to store data and connect to compute engine via private IP Address
+- Create endpoints to give informations about the cake to frontend
+
 # Process in Cloud Computing
 
 ![Untitled Diagram drawio](https://user-images.githubusercontent.com/89336327/172532640-8df61d43-145b-4f89-ab3f-294e4e6085f5.png)
