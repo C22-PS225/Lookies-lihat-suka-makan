@@ -37,7 +37,7 @@
         android:id="@+id/user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="120dp"
         android:text="@string/username"
         android:textColor="@color/magenta"
         android:textSize="15sp"
@@ -66,40 +66,49 @@
         app:layout_constraintStart_toStartOf="@+id/user"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
-    <com.example.lookies.PassEditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passLay"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginEnd="55dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/pass" />
+        app:layout_constraintEnd_toEndOf="@+id/username"
+        app:layout_constraintStart_toStartOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/pass"
+        app:passwordToggleEnabled="true">
+
+        <com.example.lookies.PassEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="100dp"
         android:text="@string/login"
-        app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintEnd_toEndOf="@+id/passLay"
+        app:layout_constraintStart_toStartOf="@+id/passLay"
+        app:layout_constraintTop_toBottomOf="@+id/passLay" />
 
     <TextView
         android:id="@+id/noAcc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="12dp"
         android:gravity="center_horizontal"
         android:text="@string/acc"
         android:textColor="@color/magenta"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
     <TextView
         android:id="@+id/createAcc"
