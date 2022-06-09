@@ -103,6 +103,19 @@ class predict(Resource):
                 return make_response(jsonify(kue),200)
             else :
                 return make_response(jsonify({"msg":"Kue tidak ditemukan"}),404)
+
+class carikue(Resource):
+    def post(self):
+        search = request.form.get('cari')
+        cur = mysql.connection.cursor()
+        query = "Select * from kue where nama_kue like '%{}%' ORDER BY id_kue DESC LIMIT 20".format(search)
+        cur.execute(query)
+        kue = cur.fetchall()
+        cur.close()
+        if kue is not None and len(kue) >=1 :
+            return make_response(jsonify(kue),200)
+        else :
+            return make_response(jsonify({"msg":"Kue tidak ditemukan"}),404)                      
             
 
 api.add_resource(RegisterUser, "/register", methods=["POST"])
@@ -110,6 +123,7 @@ api.add_resource(LoginUser, "/login", methods=["POST", "GET"])
 api.add_resource(kue, "/kue/<string:hasil_ML>", methods=["GET"])
 api.add_resource(resep, "/resep/<string:hasil_ML>", methods=["GET"])
 api.add_resource(predict, "/predictkue", methods=["POST"])
+api.add_resource(carikue, "/carikue", methods=["POST"])
 #jalankan aplikasi
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
