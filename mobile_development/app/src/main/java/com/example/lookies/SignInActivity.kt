@@ -32,22 +32,6 @@ class SignInActivity : AppCompatActivity() {
         setupViewModel()
         setupAction()
 
-
-
-
-        binding.login.setOnClickListener {
-            val username = binding.username.text.toString()
-            val password = binding.password.text.toString()
-            viewModel.postLogin(username, password)
-            viewModel.loginResp.observe(this) { resp ->
-                saveUserSession(
-                    UserModel(
-                        resp.token,
-                        true
-                    )
-                )
-            }
-        }
     }
 
     private fun setupView() {
@@ -91,16 +75,12 @@ class SignInActivity : AppCompatActivity() {
                 )
             }
         }
-//        binding.createAcc.setOnClickListener {
-//            val intentToSignUp = Intent(this, SignUpActivity::class.java)
-//            startActivity(intentToSignUp)
-//            finish()
-//        }
 
-        val clickHere = findViewById<TextView>(R.id.createAcc)
-        clickHere.setOnClickListener {
-            val intent = Intent(this@SignInActivity, SignUpActivity::class.java)
-            startActivity(intent)
+        val createAcc = findViewById<TextView>(R.id.createAcc)
+        createAcc.setOnClickListener {
+            val intentToSignUp = Intent(this, SignUpActivity::class.java)
+            startActivity(intentToSignUp)
+            finish()
         }
     }
 
