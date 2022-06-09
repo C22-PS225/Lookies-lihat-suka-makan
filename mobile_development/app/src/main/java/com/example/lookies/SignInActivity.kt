@@ -10,10 +10,10 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.example.lookies.databinding.ActivitySignInBinding
+
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
@@ -30,6 +30,11 @@ class SignInActivity : AppCompatActivity() {
         setupView()
         setupViewModel()
         setupAction()
+
+        binding.createAcc.setOnClickListener {
+            val intent = Intent(this@SignInActivity, SignUpActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupView() {
