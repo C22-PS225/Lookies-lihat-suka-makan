@@ -1,5 +1,6 @@
 package com.example.lookies
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -8,8 +9,13 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.example.lookies.databinding.ActivitySignUpBinding
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -44,7 +50,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun setupViewModel() {
 
         viewModel = ViewModelProvider(
-            this, ViewModelFactory()
+            this, ViewModelFactory(UserPreference.getInstance(dataStore))
         )[SignUpViewModel::class.java]
 
         viewModel.isLoad.observe(this) {
