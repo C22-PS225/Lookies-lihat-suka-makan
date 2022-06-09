@@ -12,7 +12,7 @@ class SplashLookiesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_lookies)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }, DELAY)
     }
