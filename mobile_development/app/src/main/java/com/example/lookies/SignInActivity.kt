@@ -7,13 +7,14 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.example.lookies.databinding.ActivitySignInBinding
-
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
@@ -31,9 +32,21 @@ class SignInActivity : AppCompatActivity() {
         setupViewModel()
         setupAction()
 
-        binding.createAcc.setOnClickListener {
-            val intent = Intent(this@SignInActivity, SignUpActivity::class.java)
-            startActivity(intent)
+
+
+
+        binding.login.setOnClickListener {
+            val username = binding.username.text.toString()
+            val password = binding.password.text.toString()
+            viewModel.postLogin(username, password)
+            viewModel.loginResp.observe(this) { resp ->
+                saveUserSession(
+                    UserModel(
+                        resp.token,
+                        true
+                    )
+                )
+            }
         }
     }
 
@@ -78,10 +91,16 @@ class SignInActivity : AppCompatActivity() {
                 )
             }
         }
-        binding.createAcc.setOnClickListener {
-            val intentToSignUp = Intent(this, SignUpActivity::class.java)
-            startActivity(intentToSignUp)
-            finish()
+//        binding.createAcc.setOnClickListener {
+//            val intentToSignUp = Intent(this, SignUpActivity::class.java)
+//            startActivity(intentToSignUp)
+//            finish()
+//        }
+
+        val clickHere = findViewById<TextView>(R.id.createAcc)
+        clickHere.setOnClickListener {
+            val intent = Intent(this@SignInActivity, SignUpActivity::class.java)
+            startActivity(intent)
         }
     }
 
