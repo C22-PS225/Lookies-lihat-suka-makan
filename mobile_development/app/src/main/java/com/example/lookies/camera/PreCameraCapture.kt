@@ -1,5 +1,8 @@
 package com.example.lookies.camera
 import android.Manifest
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
@@ -9,6 +12,7 @@ import android.media.ThumbnailUtils
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -97,12 +101,29 @@ class PreCameraCapture : AppCompatActivity() {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
 
+    private fun isPermissionsAllowed(): Boolean {
+        return ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+    }
+
+    fun askForPermissions(): Boolean {
+        if (!isPermissionsAllowed()) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this as Activity,Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                showPermissionDeniedDialog()
+            } else {
+                ActivityCompat.requestPermissions(this as Activity,arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),REQUEST_CODE_PERMISSIONS)
+            }
+            return false
+        }
+        return true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPreCameraCaptureBinding.inflate(layoutInflater)
         setContentView(binding.root)
         this.supportActionBar?.hide()
 
+        //permission camera
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this,
@@ -110,6 +131,8 @@ class PreCameraCapture : AppCompatActivity() {
                 REQUEST_CODE_PERMISSIONS
             )
         }
+
+
         binding.imgBackButton.setOnClickListener{
             finish()
         }
@@ -120,33 +143,40 @@ class PreCameraCapture : AppCompatActivity() {
         binding.galleryButton.setOnClickListener { startGallery() }
 
         binding.btnContinue.setOnClickListener {
+            if (askForPermissions()) {
+                if(result != null){
+                    val dimension: Int = min(result!!.width, result!!.height)
+                    var newImage = ThumbnailUtils.extractThumbnail(result, dimension, dimension)
+                    newImage = Bitmap.createScaledBitmap(newImage,
+                        dummyResultCamera.imageSize,
+                        dummyResultCamera.imageSize, false)
+                    val imageToSend = bitmapImage(newImage)
+                    val intent = Intent(this, dummyResultCamera::class.java)
+                    intent.putExtra(IMAGE_BITMAP,imageToSend)
+                    startActivity(intent)
+                }else if(selectedImg != null){
+                    val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImg)
 
-            if(result != null){
-                val dimension: Int = min(result!!.width, result!!.height)
-                var newImage = ThumbnailUtils.extractThumbnail(result, dimension, dimension)
-                newImage = Bitmap.createScaledBitmap(newImage,
-                    dummyResultCamera.imageSize,
-                    dummyResultCamera.imageSize, false)
-                val imageToSend = bitmapImage(newImage)
-                val intent = Intent(this, dummyResultCamera::class.java)
-                intent.putExtra(IMAGE_BITMAP,imageToSend)
-                startActivity(intent)
-            }else if(selectedImg != null){
-                val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImg)
-
-                val dimension: Int = min(bitmap!!.width, bitmap!!.height)
-                var newImage = ThumbnailUtils.extractThumbnail(bitmap, dimension, dimension)
-                newImage = Bitmap.createScaledBitmap(newImage,
-                    dummyResultCamera.imageSize,
-                    dummyResultCamera.imageSize, false)
-                val imageToSend = bitmapImage(newImage)
-                val intent = Intent(this, dummyResultCamera::class.java)
-                intent.putExtra(IMAGE_BITMAP,imageToSend)
-                startActivity(intent)
+                    val dimension: Int = min(bitmap!!.width, bitmap.height)
+                    var newImage = ThumbnailUtils.extractThumbnail(bitmap, dimension, dimension)
+                    newImage = Bitmap.createScaledBitmap(newImage,
+                        dummyResultCamera.imageSize,
+                        dummyResultCamera.imageSize, false)
+                    val imageToSend = bitmapImage(newImage)
+                    val intent = Intent(this, dummyResultCamera::class.java)
+                    intent.putExtra(IMAGE_BITMAP,imageToSend)
+                    startActivity(intent)
+                }else{
+                    Toast.makeText(
+                        this,
+                        "Put a photo first",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }else{
                 Toast.makeText(
                     this,
-                    "Put a photo first",
+                    "Grant permissions to the application first",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -156,6 +186,27 @@ class PreCameraCapture : AppCompatActivity() {
     private fun startCameraX() {
         val intent = Intent(this, CameraActivity::class.java)
         launcherIntentCameraX.launch(intent)
+    }
+
+
+
+
+
+    private fun showPermissionDeniedDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Permission Denied")
+            .setMessage("Permission is denied, Please allow permissions from App Settings.")
+            .setPositiveButton("App Settings",
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                    // send to app settings if permission is denied permanently
+                    val intent = Intent()
+                    intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                    val uri = Uri.fromParts("package", packageName, null)
+                    intent.data = uri
+                    startActivity(intent)
+                })
+            .setNegativeButton("Cancel",null)
+            .show()
     }
 
 }

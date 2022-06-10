@@ -2,14 +2,22 @@ package com.example.lookies.camera
 
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
+import android.os.Environment
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lookies.PredictKueResponse
+import com.example.lookies.R
+import com.example.lookies.api.ApiConfig
 import com.example.lookies.databinding.ActivityDummyResultCameraBinding
-import com.example.lookies.ml.TfliteModel
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 
 
 class dummyResultCamera : AppCompatActivity() {
@@ -19,6 +27,7 @@ class dummyResultCamera : AppCompatActivity() {
         var imageSize = 150
         private const val TAG = "dummyResultCamera"
         private const val IMAGE_BITMAP = "BitmapImage"
+        private const val PHOTO = "file"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,63 +37,68 @@ class dummyResultCamera : AppCompatActivity() {
         this.supportActionBar?.hide()
         val imageFromIntent = intent.getParcelableExtra<bitmapImage>(IMAGE_BITMAP) as bitmapImage
         binding.previewImageView.setImageBitmap(imageFromIntent.img)
-        classifyImage(imageFromIntent.img!!)
+
+//        classifyImage(imageFromIntent.img!!)
+        predictKue(imageFromIntent.img)
 
         binding.imgBackButton.setOnClickListener{
             finish()
         }
     }
 
-    private fun classifyImage(image: Bitmap){
-        val model = TfliteModel.newInstance(this)
-
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 150, 150, 3), DataType.FLOAT32)
-        val byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3)
-        byteBuffer.order(ByteOrder.nativeOrder())
-
-        val intValues = IntArray(imageSize * imageSize)
-        image.getPixels(intValues, 0, image.width, 0,0,image.width, image.height)
-
-        var pixel = 0;
-        for (i in 0 until imageSize) {
-            for (j in 0 until imageSize) {
-                var value = intValues[pixel++]
-                byteBuffer.putFloat(((value shr 16) and  0xFF) * (1f/1))
-                byteBuffer.putFloat(((value shr 8) and  0xFF) * (1f/1))
-                byteBuffer.putFloat((value  and  0xFF) * (1f/1))
+    private fun predictKue(image: Bitmap?){
+        val file = image?.let { imageToFile(it, "ImageFile.jpg") }
+//        val file = image as File
+        val requestImageFile = file!!.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+            PHOTO,
+            file.name,
+            requestImageFile
+        )
+        val service = ApiConfig.getApi().uploadImage(imageMultipart)
+        service.enqueue(object : Callback<PredictKueResponse> {
+            override fun onResponse(
+                call: Call<PredictKueResponse>,
+                response: Response<PredictKueResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null ) {
+                        binding.txtSnackName.text = responseBody.namaKue
+                        binding.txtParagraph1.text = responseBody.paragaf1
+                        binding.txtParagraph2.text = responseBody.paragaf2
+                        binding.txtIngredients.text = responseBody.bahan
+                    }
+                }
             }
-        }
-        inputFeature0.loadBuffer(byteBuffer)
 
-        val outputs = model.process(inputFeature0)
-        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-        val confidences = outputFeature0.floatArray
-        var maxPosition = 0
-        var maxConfidence = 0f
-        for (i in confidences.indices){
-            Log.d(TAG,"Ini merupakan confidence " + i + " = "+ confidences[i].toString())
-            if(confidences[i] > maxConfidence){
-                maxConfidence = confidences[i]
-                maxPosition = i
+            override fun onFailure(call: Call<PredictKueResponse>, t: Throwable) {
+                Toast.makeText(this@dummyResultCamera, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show()
             }
-        }
-        Log.d(TAG,"LOKASI CONFIDENCES " + maxPosition + " = "+ confidences[maxPosition])
-        val classes = arrayOf("kue_ape","kue_bika_ambon","kue_cenil","kue_dadar_gulung","kue_gethuk_lindri","kue_kastengel","kue_klepon","kue_lapis","kue_lemper","kue_lumpur","kue_nagasari","kue_pastel","kue_putri_salju","kue_putu_ayu","kue_risoles","kue_serabi" )
-
-        val classes2 = arrayOf("Dadar Gulung","Kastengel","Klepon","Lapis","Lumpur","Putri Salju","Risoles","Serabi","Pastel","Lemper","Putu Ayu","Nagasari","Ape Cake","Gethuk Lindri","Bika Ambon","Cenil" )
-
-        val classes3 = arrayOf("Dadar Gulung","Kastengel","Klepon","Lapis","Lumpur","Putri Salju","Risoles","Pastel","Serabi","Lemper","Putu Ayu","Nagasari","Ape Cake","Gethuk Lindri","Bika Ambon","Cenil" )
-
-
-        val fileName = "labels.txt"
-        val inputString = application.assets.open(fileName).bufferedReader().use{it.readText()}
-        val arrayKue = inputString.split("\n")
-
-        binding.txtSnackName.text = arrayKue[maxPosition]
-        model.close()
+        })
     }
+
 
     override fun onBackPressed() {
         finish()
+    }
+
+    fun imageToFile(bitmap: Bitmap, newName: String): File? {
+        var fileImage: File? = null
+        return try {
+            fileImage = File(Environment.getExternalStorageDirectory().toString() + File.separator + newName)
+            fileImage.createNewFile()
+            val bos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 0, bos)
+            val bitmapdata = bos.toByteArray()
+            val fos = FileOutputStream(fileImage)
+            fos.write(bitmapdata)
+            fos.flush()
+            fos.close()
+            fileImage
+        } catch (e: Exception) {
+            e.printStackTrace()
+            fileImage
+        }
     }
 }

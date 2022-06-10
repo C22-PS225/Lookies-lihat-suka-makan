@@ -1,11 +1,12 @@
 package com.example.lookies.api
 
+import com.example.lookies.PredictKueResponse
 import com.example.lookies.login.LoginResponse
 import com.example.lookies.register.RegisterResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface Api {
 
@@ -24,4 +25,10 @@ interface Api {
         @Field("username") username: String,
         @Field("password") password: String
     ): Call<LoginResponse>
+
+    @Multipart
+    @POST("predictkue")
+    fun uploadImage(
+        @Part file: MultipartBody.Part
+    ): Call<PredictKueResponse>
 }
