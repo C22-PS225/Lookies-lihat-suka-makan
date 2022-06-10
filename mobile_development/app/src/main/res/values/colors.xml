@@ -12,6 +12,7 @@
     <color name="magenta">#000E38</color>
     <color name="dark_purple">#974B7E</color>
     <color name="light_maroon">#391C30</color>
+    <color name="shimmer">#dddddd</color>
 
 
 </resources>

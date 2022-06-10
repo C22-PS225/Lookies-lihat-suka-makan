@@ -18,7 +18,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.lookies.camera.dummyResultCamera
 import com.example.lookies.databinding.ActivityPreCameraCaptureBinding
 import com.example.lookies.rotateBitmap
 import com.example.lookies.uriToFile
@@ -148,10 +147,10 @@ class PreCameraCapture : AppCompatActivity() {
                     val dimension: Int = min(result!!.width, result!!.height)
                     var newImage = ThumbnailUtils.extractThumbnail(result, dimension, dimension)
                     newImage = Bitmap.createScaledBitmap(newImage,
-                        dummyResultCamera.imageSize,
-                        dummyResultCamera.imageSize, false)
+                        CameraResultPage.imageSize,
+                        CameraResultPage.imageSize, false)
                     val imageToSend = bitmapImage(newImage)
-                    val intent = Intent(this, dummyResultCamera::class.java)
+                    val intent = Intent(this, CameraResultPage::class.java)
                     intent.putExtra(IMAGE_BITMAP,imageToSend)
                     startActivity(intent)
                 }else if(selectedImg != null){
@@ -160,10 +159,10 @@ class PreCameraCapture : AppCompatActivity() {
                     val dimension: Int = min(bitmap!!.width, bitmap.height)
                     var newImage = ThumbnailUtils.extractThumbnail(bitmap, dimension, dimension)
                     newImage = Bitmap.createScaledBitmap(newImage,
-                        dummyResultCamera.imageSize,
-                        dummyResultCamera.imageSize, false)
+                        CameraResultPage.imageSize,
+                        CameraResultPage.imageSize, false)
                     val imageToSend = bitmapImage(newImage)
-                    val intent = Intent(this, dummyResultCamera::class.java)
+                    val intent = Intent(this, CameraResultPage::class.java)
                     intent.putExtra(IMAGE_BITMAP,imageToSend)
                     startActivity(intent)
                 }else{

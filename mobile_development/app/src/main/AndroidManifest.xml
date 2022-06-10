@@ -28,10 +28,10 @@
             android:name=".register.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".camera.CameraResultPage"
+            android:name=".camera.CameraResultPageDummy"
             android:exported="false" />
         <activity
-            android:name=".camera.dummyResultCamera"
+            android:name=".camera.CameraResultPage"
             android:exported="false" />
         <activity
             android:name=".camera.PreCameraCapture"

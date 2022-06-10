@@ -9,16 +9,7 @@
     tools:layout_editor_absoluteY="12dp"
     android:orientation="vertical">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_camera"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
+
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -72,17 +63,17 @@
                     android:layout_height="200dp"
                     android:background="@color/light_purple"
                     android:elevation="8dp"
-                    android:src="@drawable/dadargulungubiungu" />
+                     />
 
             </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/txtSnackName"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
+                android:background="@color/shimmer"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:text="Snack Name"
                 android:textColor="@color/magenta"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -94,10 +85,10 @@
             <TextView
                 android:id="@+id/txtParagraph1"
                 android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10sp"
-                android:text="Pastels are a type of pastry made by placing the filling on top of the dough, then folded and tightly closed. Pastels can taste sweet or savory depending on the filling. Pastels can be easy-to-carry foods, just like sandwiches."
+                android:background="@color/shimmer"
                 android:textAlignment="center"
                 android:textColor="@color/light_maroon"
                 android:textSize="16sp" />
@@ -105,20 +96,21 @@
             <TextView
                 android:id="@+id/txtParagraph2"
                 android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
+                android:background="@color/shimmer"
                 android:layout_gravity="center"
                 android:layout_marginTop="10sp"
-                android:text="Pastels are a type of pastry made by placing the filling on top of the dough, then folded and tightly closed. Pastels can taste sweet or savory depending on the filling. Pastels can be easy-to-carry foods, just like sandwiches."
                 android:textAlignment="center"
                 android:textColor="@color/light_maroon"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="240dp"
+                android:background="@color/shimmer"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15sp"
-                android:text="Cooking Ingredients"
+
                 android:textColor="@color/magenta"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -126,23 +118,11 @@
             <TextView
                 android:id="@+id/txtIngredients"
                 android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
+                android:background="@color/shimmer"
                 android:layout_gravity="center"
                 android:layout_marginTop="10sp"
-                android:text="Leather material :\n
-\t\t\t200 grams of all-purpose flour\n
-\t\t\t50 grams margarine, room temperature\n
-\t\t\t1/4 tsp salt\n
-\t\t\t1 tsp sugar\n
-\t\t\t75 ml water\n
-\n
-Material contents :\n
-\t\t\t200 g purple sweet potato, steamed (weight after steaming)\n
-\t\t\t3 tablespoons sugar (add more if you like it sweet)\n
-pinch of salt\n
-\t\t\tEnough purple sweet potato paste\n
-\t\t\t1/4 tsp vanilla powder\n
-\t\t\t100 ml coconut milk\n"
+
                 android:textColor="@color/light_maroon"
                 android:textSize="16sp" />
 
