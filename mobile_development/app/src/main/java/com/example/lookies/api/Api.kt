@@ -12,7 +12,7 @@ interface Api {
     @FormUrlEncoded
     @POST("register")
     fun postRegister(
-        @Field("nama") name: String,
+        @Field("nama") nama: String,
         @Field("username") username: String,
         @Field("email") email: String,
         @Field("password") password: String
