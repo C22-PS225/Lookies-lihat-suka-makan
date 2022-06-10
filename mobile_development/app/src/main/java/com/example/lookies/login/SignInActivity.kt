@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -69,9 +70,25 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        binding.login.setOnClickListener {
-            val username = binding.username.text.toString()
-            val password = binding.password.text.toString()
+//        binding.login.setOnClickListener {
+//            val username = binding.username.text.toString()
+//            val password = binding.password.text.toString()
+//            viewModel.postLogin(username, password)
+//            viewModel.loginResp.observe(this) { resp ->
+//                Log.d(TAG, "Ini Respon = $resp")
+//                saveUserSession(
+//                    UserModel(
+//                        resp.token,
+//                        true
+//                    )
+//                )
+//            }
+//        }
+
+        val btnLogin = findViewById<Button>(R.id.login)
+        btnLogin.setOnClickListener {
+            val username =  findViewById<TextView>(R.id.username).text.toString()
+            val password = findViewById<TextView>(R.id.password).text.toString()
             viewModel.postLogin(username, password)
             viewModel.loginResp.observe(this) { resp ->
                 Log.d(TAG, "Ini Respon = $resp")

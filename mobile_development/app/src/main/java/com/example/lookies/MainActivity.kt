@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
             R.id.myHome, R.id.mySearch, R.id.myPlaceholder, R.id.myAccount, R.id.mySetting
         ).build()
 
-
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
