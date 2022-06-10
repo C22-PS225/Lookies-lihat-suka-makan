@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/myHome"
-        android:name="com.example.lookies.HomeFragment"
+        android:name="com.example.lookies.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
@@ -17,12 +17,12 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/mySetting"
-        android:name="com.example.lookies.Preferences"
+        android:name="com.example.lookies.setting.Preferences"
         android:label="fragment_preferences"
         tools:layout="@layout/fragment_preferences" />
     <fragment
         android:id="@+id/myAccount"
-        android:name="com.example.lookies.AcoountInfo"
+        android:name="com.example.lookies.account.AcoountInfo"
         android:label="AcoountInfo"
         tools:layout="@layout/fragment_acoount_info"/>
 </navigation>
