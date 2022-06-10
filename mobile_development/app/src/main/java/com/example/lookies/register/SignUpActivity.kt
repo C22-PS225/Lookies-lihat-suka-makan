@@ -68,7 +68,6 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun customView() {
         passEditText = binding.password
-        passEditText = binding.passEd
     }
 
     private fun setupAction() {
