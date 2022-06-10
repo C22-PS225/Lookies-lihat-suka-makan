@@ -1,5 +1,6 @@
 package com.example.lookies.camera
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Environment
@@ -45,18 +46,19 @@ class CameraResultPage : AppCompatActivity() {
         shimmerLayout = findViewById(R.id.myShimmer)
         shimmerLayout.startShimmer()
 
-//        val scrollView = findViewById<ScrollView>(R.id.scrollView2)
-//        scrollView.visibility = View.VISIBLE
-
         predictKue(imageFromIntent.img)
 
         binding.imgBackButton.setOnClickListener{
             finish()
         }
+        binding.fabCamera.setOnClickListener {
+            val intent = Intent(this@CameraResultPage, PreCameraCapture::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun predictKue(image: Bitmap?){
-        val file = image?.let { imageToFile(it, "ImageFile.jpg") }
+        val file = image?.let { imageToFile(it, "ImageFile.jpeg") }
 //        val file = image as File
         val requestImageFile = file!!.asRequestBody("image/jpeg".toMediaTypeOrNull())
         val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
@@ -80,8 +82,7 @@ class CameraResultPage : AppCompatActivity() {
 
                         shimmerLayout.stopShimmer()
                         shimmerLayout.visibility = View.GONE
-                        val scrollView = findViewById<ScrollView>(R.id.scrollView2)
-                        scrollView.visibility = View.VISIBLE
+                        binding.scrollView2.visibility = View.VISIBLE
 
                     }
                 }
@@ -98,13 +99,13 @@ class CameraResultPage : AppCompatActivity() {
         finish()
     }
 
-    fun imageToFile(bitmap: Bitmap, newName: String): File? {
+    private fun imageToFile(bitmap: Bitmap, newName: String): File? {
         var fileImage: File? = null
         return try {
             fileImage = File(Environment.getExternalStorageDirectory().toString() + File.separator + newName)
             fileImage.createNewFile()
             val bos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 0, bos)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 0, bos)
             val bitmapdata = bos.toByteArray()
             val fos = FileOutputStream(fileImage)
             fos.write(bitmapdata)
