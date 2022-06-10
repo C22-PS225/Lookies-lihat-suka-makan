@@ -13,10 +13,10 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.example.lookies.login.PassEditText
 import com.example.lookies.UserPreference
 import com.example.lookies.ViewModelFactory
 import com.example.lookies.databinding.ActivitySignUpBinding
+import com.example.lookies.login.PassEditText
 import com.example.lookies.login.SignInActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
@@ -67,16 +67,16 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun customView() {
-        passEditText = binding.password
+        passEditText = binding.passwordEd
     }
 
     private fun setupAction() {
         binding.register.setOnClickListener {
-            val name = binding.name.text.toString()
+            val nama = binding.nameEd.text.toString()
             val username = binding.usernameEd.text.toString()
             val email = binding.emailEd.text.toString()
-            val pass = binding.password.text.toString()
-            viewModel.postRegister(name, username, email, pass)
+            val pass = binding.passwordEd.text.toString()
+            viewModel.postRegister(nama, username, email, pass)
             viewModel.regResp.observe(this) { resp ->
                 if (!resp.error) {
                     val intentToLogin = Intent(this, SignInActivity::class.java)
