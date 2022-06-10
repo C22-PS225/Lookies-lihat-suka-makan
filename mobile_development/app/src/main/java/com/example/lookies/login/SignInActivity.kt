@@ -27,7 +27,7 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
     private lateinit var viewModel: SignInViewModel
 
-    companion object{
+    companion object {
         private const val TAG = "SignInActivity"
     }
 
@@ -70,25 +70,10 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-//        binding.login.setOnClickListener {
-//            val username = binding.username.text.toString()
-//            val password = binding.password.text.toString()
-//            viewModel.postLogin(username, password)
-//            viewModel.loginResp.observe(this) { resp ->
-//                Log.d(TAG, "Ini Respon = $resp")
-//                saveUserSession(
-//                    UserModel(
-//                        resp.token,
-//                        true
-//                    )
-//                )
-//            }
-//        }
-
         val btnLogin = findViewById<Button>(R.id.login)
         btnLogin.setOnClickListener {
-            val username =  findViewById<TextView>(R.id.username).text.toString()
-            val password = findViewById<TextView>(R.id.password).text.toString()
+            val username = findViewById<TextView>(R.id.usernameEd).text.toString()
+            val password = findViewById<TextView>(R.id.passwordEd).text.toString()
             viewModel.postLogin(username, password)
             viewModel.loginResp.observe(this) { resp ->
                 Log.d(TAG, "Ini Respon = $resp")
