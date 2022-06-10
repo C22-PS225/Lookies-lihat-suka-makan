@@ -2,6 +2,8 @@ package com.example.lookies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.lookies.login.SignInViewModel
+import com.example.lookies.register.SignUpViewModel
 
 class ViewModelFactory(private val pref: UserPreference) :
     ViewModelProvider.NewInstanceFactory() {

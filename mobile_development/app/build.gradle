@@ -13,7 +13,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-        buildConfigField("String", "URL", '"https://suksesatu.et.r.appspot.com/"')
+        buildConfigField("String", "URL", '"http://34.101.248.103:8080/"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

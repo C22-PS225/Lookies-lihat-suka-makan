@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.lookies.camera.PreCameraCapture
 import com.example.lookies.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

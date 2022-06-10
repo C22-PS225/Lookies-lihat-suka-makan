@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/loginpage"
-    tools:context=".SignInActivity">
+    tools:context=".login.SignInActivity">
 
     <ImageView
         android:id="@+id/welcome"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/pass"
         app:passwordToggleEnabled="true">
 
-        <com.example.lookies.PassEditText
+        <com.example.lookies.login.PassEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

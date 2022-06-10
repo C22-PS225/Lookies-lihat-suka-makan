@@ -4,11 +4,13 @@
     package="com.example.lookies">
 
     <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -18,25 +20,25 @@
         android:theme="@style/Theme.Lookies"
         tools:targetApi="31">
         <activity
-            android:name=".SearchPage"
+            android:name=".search.SearchPage"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".register.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".CameraResultPage"
+            android:name=".camera.CameraResultPage"
             android:exported="false" />
         <activity
-            android:name=".dummyResultCamera"
+            android:name=".camera.dummyResultCamera"
             android:exported="false" />
         <activity
-            android:name=".PreCameraCapture"
+            android:name=".camera.PreCameraCapture"
             android:exported="false" />
         <activity
-            android:name=".CameraActivity"
+            android:name=".camera.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".login.SignInActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
