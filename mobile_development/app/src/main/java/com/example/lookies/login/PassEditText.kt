@@ -5,7 +5,6 @@ import android.graphics.Canvas
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import com.example.lookies.R
 
@@ -28,8 +27,6 @@ class PassEditText : AppCompatEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = context.getString(R.string.password)
-        textAlignment = View.TEXT_ALIGNMENT_VIEW_START
     }
 
     private fun init() {
