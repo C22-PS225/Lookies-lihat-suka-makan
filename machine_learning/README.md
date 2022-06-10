@@ -1,5 +1,5 @@
 # Machine Learning Path's Overview  
-As a machine learning engineers, we mainly contributed in making a model using Keras in TensorFlow to classify the Indonesian traditional cakes images that will be captured by Lookies. To encapsulate the machine learning path guidelines in this project, here are the points to consider:
+As a machine learning engineers, we mainly contributed in making a model using Keras in TensorFlow to classify the Indonesian traditional cakes images that will be captured by Lookies. To encapsulate the machine learning path guidelines in this project, here are some points to consider:
 
 ## Machine Learning Job Desc  
 
