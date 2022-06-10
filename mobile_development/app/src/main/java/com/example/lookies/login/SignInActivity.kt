@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -24,6 +25,10 @@ class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
     private lateinit var viewModel: SignInViewModel
+
+    companion object{
+        private const val TAG = "SignInActivity"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +74,7 @@ class SignInActivity : AppCompatActivity() {
             val password = binding.password.text.toString()
             viewModel.postLogin(username, password)
             viewModel.loginResp.observe(this) { resp ->
+                Log.d(TAG, "Ini Respon = $resp")
                 saveUserSession(
                     UserModel(
                         resp.token,
