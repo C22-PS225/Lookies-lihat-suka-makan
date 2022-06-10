@@ -36,16 +36,17 @@ class SignInViewModel(private val pref: UserPreference) : ViewModel() {
         }
     }
 
-    fun postLogin(email: String, password: String) {
+    fun postLogin(email: String, password: String): Boolean {
         _isLoad.value = true
+        var isLoged = false
         val client = ApiConfig.getApi().postLogin(email, password)
         client.enqueue(object : Callback<LoginResponse> {
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>){
                 _isLoad.value = false
                 if (response.isSuccessful && response.body() != null) {
                     _loginResp.value = response.body()
                     _message.value = response.body()?.message
-
+                    isLoged = true
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                     _message.value = response.message()
@@ -59,7 +60,7 @@ class SignInViewModel(private val pref: UserPreference) : ViewModel() {
             }
 
         })
-
+        return isLoged
     }
 
     companion object {
