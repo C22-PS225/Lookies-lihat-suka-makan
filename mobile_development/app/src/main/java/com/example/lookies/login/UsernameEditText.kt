@@ -28,8 +28,6 @@ class UsernameEditText : AppCompatEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = context.getString(R.string.username)
-        textAlignment = View.TEXT_ALIGNMENT_VIEW_START
     }
 
     private fun init() {
