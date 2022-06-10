@@ -1,10 +1,7 @@
 package com.example.lookies.login
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.lookies.UserModel
 import com.example.lookies.UserPreference
 import com.example.lookies.api.ApiConfig
@@ -23,6 +20,10 @@ class SignInViewModel(private val pref: UserPreference) : ViewModel() {
 
     private val _loginResp = MutableLiveData<LoginResponse>()
     val loginResp: LiveData<LoginResponse> = _loginResp
+
+    fun getUser(): LiveData<UserModel> {
+        return pref.getUser().asLiveData()
+    }
 
     fun saveUser(user: UserModel) {
         viewModelScope.launch {

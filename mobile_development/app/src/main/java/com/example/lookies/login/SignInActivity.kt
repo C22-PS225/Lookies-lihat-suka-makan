@@ -39,7 +39,6 @@ class SignInActivity : AppCompatActivity() {
         setupView()
         setupViewModel()
         setupAction()
-
     }
 
     private fun setupView() {
