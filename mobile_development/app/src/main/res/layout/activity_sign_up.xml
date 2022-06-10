@@ -118,27 +118,6 @@
         android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@+id/pass" />
 
-    <TextView
-        android:id="@+id/passConf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="@string/pass_conf"
-        android:textColor="@color/magenta"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/user"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <com.example.lookies.login.PassEditText
-        android:id="@+id/passEd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginEnd="55dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/passConf" />
-
     <Button
         android:id="@+id/register"
         android:layout_width="0dp"
@@ -147,9 +126,9 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="97dp"
         android:text="@string/register"
-        app:layout_constraintEnd_toEndOf="@+id/passEd"
-        app:layout_constraintStart_toStartOf="@+id/passEd"
-        app:layout_constraintTop_toBottomOf="@+id/passEd" />
+        app:layout_constraintEnd_toEndOf="@+id/password"
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <ProgressBar
         android:id="@+id/progressBar"
