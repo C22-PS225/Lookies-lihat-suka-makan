@@ -19,9 +19,9 @@ class SignUpViewModel : ViewModel() {
     private val _regResp = MutableLiveData<RegisterResponse>()
     val regResp: LiveData<RegisterResponse> = _regResp
 
-    fun postRegister(name: String, username: String, email: String, password: String) {
+    fun postRegister(nama: String, username: String, email: String, password: String) {
         _isLoad.value = true
-        val client = ApiConfig.getApi().postRegister(name, username, email, password)
+        val client = ApiConfig.getApi().postRegister(nama, username, email, password)
         client.enqueue(object : Callback<RegisterResponse> {
             override fun onResponse(
                 call: Call<RegisterResponse>,
