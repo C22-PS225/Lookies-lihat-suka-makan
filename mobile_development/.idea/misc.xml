@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Ali Imran/AndroidStudioProjects/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/activity_favorite_cakes.xml" value="0.22" />
+        <entry key="..\:/Users/Ali Imran/AndroidStudioProjects/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/Ali Imran/AndroidStudioProjects/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/activity_pre_camera_capture.xml" value="0.5" />
         <entry key="..\:/Users/Ali Imran/AndroidStudioProjects/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/activity_sign_in.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Ali Imran/AndroidStudioProjects/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/activity_sign_up.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Ali Imran/AndroidStudioProjects/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/activity_splash_lookies.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Ali Imran/AndroidStudioProjects/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/fragment_acoount_info.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Ali Imran/AndroidStudioProjects/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/fragment_favorite_cakes.xml" value="0.22" />
         <entry key="..\:/Users/Ali Imran/AndroidStudioProjects/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/fragment_home.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Ali Imran/AndroidStudioProjects/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/fragment_preferences.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Ali Imran/AndroidStudioProjects/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/fragment_search.xml" value="0.22135416666666666" />
@@ -46,7 +48,11 @@
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BANGKIT_REPO_BERSAMA/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/activity_dummy_result_camera.xml" value="0.25" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BANGKIT_REPO_BERSAMA/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BANGKIT_REPO_BERSAMA/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/activity_pre_camera_capture.xml" value="0.264" />
+<<<<<<< HEAD
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BANGKIT_REPO_BERSAMA/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/activity_sign_in.xml" value="0.4" />
+=======
+        <entry key="..\:/Users/lenovo/AndroidStudioProjects/BANGKIT_REPO_BERSAMA/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
+>>>>>>> 16c1cdb4c1fe94bdd3791adad9c444500453a306
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BANGKIT_REPO_BERSAMA/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/activity_splash_lookies.xml" value="0.25" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BANGKIT_REPO_BERSAMA/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/fragment_acoount_info.xml" value="0.2" />
         <entry key="..\:/Users/lenovo/AndroidStudioProjects/BANGKIT_REPO_BERSAMA/Lookies-lihat-suka-makan/mobile_development/app/src/main/res/layout/fragment_home.xml" value="0.2" />
