@@ -49,7 +49,7 @@
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="What are you looking for today? :)"
+                        android:text="@string/looking_for"
                         android:textColor="@color/magenta"
                         android:textSize="13sp"
                         android:textStyle="italic"
@@ -98,7 +98,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Spesial For You ~"
+                android:text="@string/special"
                 android:textColor="@color/magenta"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -130,7 +130,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Spesial For You ~"
+                android:text="@string/special"
                 android:textColor="@color/magenta"
                 android:textSize="22sp"
                 android:textStyle="bold"
