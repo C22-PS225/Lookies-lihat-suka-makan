@@ -6,7 +6,6 @@ import matplotlib.image as mpimg
 from keras_preprocessing import image
 import tensorflow as tf
 from efficientnet.tfkeras import EfficientNetB3
-from io import BytesIO
 from tensorflow.keras.applications.efficientnet import preprocess_input
 
 def load_model():
