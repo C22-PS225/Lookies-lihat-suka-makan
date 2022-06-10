@@ -5,8 +5,10 @@
     <string name="login">Login</string>
     <string name="username">Username</string>
     <string name="username_error">Enter username</string>
+    <string name="name_error">Enter name</string>
+    <string name="email_error">Invalid email</string>
     <string name="password">Password</string>
-    <string name="pass_message">Password less than 6 characters</string>
+    <string name="pass_message">Password less than 8 characters</string>
     <string name="password_error">Enter password</string>
     <string name="question">Is this what you\'re looking for?</string>
     <string name="cakes">Cakes</string>
@@ -16,7 +18,17 @@
     <string name="register">Register</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
-    <string name="pass_conf">Password Confirmation</string>
+    <string name="favorite">Your Favorite Snack</string>
+    <string name="take_photo">Let\'s take a photo of your snack first</string>
+    <string name="open_gallery">Open Gallery</string>
+    <string name="open_camera">Open Camera</string>
+    <string name="next">Continue</string>
+    <string name="make_sure">Make sure the picture you take is clear like the picture above, yaw ~</string>
+    <string name="user_info">User Information</string>
+    <string name="looking_for">What are you looking for today? :)</string>
+    <string name="special">Special For You ~</string>
+    <string name="info">This feature is still under development, please be patient yaa :D</string>
+    <string name="most_search">Most Search</string>
 
     <string-array name="data_name">
         <item>Dadar Gulung Ubi Ungu</item>
@@ -51,6 +63,5 @@
         <item>@drawable/dadargulungubiungu</item>
         <item>@drawable/dadargulungubiungu</item>
     </integer-array>
-    <string name="favorite">Your Favorite Snack</string>
 
 </resources>
