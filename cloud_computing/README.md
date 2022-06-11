@@ -1,13 +1,15 @@
 # Cloud Computing Job Desk
 
 - Deploy Machine Learning model on Google Cloud Platform using Compute Engine
-- Create connector using Serverless VPC Access
 - Create SQL instance to store data and connect to compute engine via private IP Address
-- Create endpoints for login, register, search cake, send the result of machine learning and to give informations about the cake to frontend
+- Create connector using Serverless VPC Access
+- Create endpoints for login, register, search cake, send the result of machine learning process and to give informations about the cake to frontend
+- Create cloud storage to store cake images
 
 # Process in Cloud Computing
 
-![Untitled Diagram drawio](https://user-images.githubusercontent.com/89336327/172532640-8df61d43-145b-4f89-ab3f-294e4e6085f5.png)
+![Untitled Diagram drawio(1)](https://user-images.githubusercontent.com/89336327/173192689-102be77a-ea41-4278-81a2-c45e20b4a98c.png)
+
 
 # API Endpoint 
 |   Endpoint   |   Method   |        Body Sent (JSON)         |                 Description                |
