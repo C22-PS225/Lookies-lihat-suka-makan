@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.lookies.R
 import com.example.lookies.search.SearchPage
 import com.example.lookies.databinding.FragmentHomeBinding
+import com.example.lookies.favorite.FavoriteCakesActivity
 
 
 private const val ARG_PARAM1 = "param1"
@@ -20,32 +21,11 @@ private const val ARG_PARAM2 = "param2"
 
 
 class HomeFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var rcySpecialForYou: RecyclerView
     private lateinit var rcySpecialForYou2: RecyclerView
     private val list = ArrayList<SpecialForYou>()
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,6 +41,11 @@ class HomeFragment : Fragment() {
 
         list.addAll(listSpecial)
         showRecyclerList()
+
+        binding.favCakes.setOnClickListener {
+            val intentToFav = Intent(requireContext(), FavoriteCakesActivity::class.java)
+            startActivity(intentToFav)
+        }
 
         binding.mySearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
