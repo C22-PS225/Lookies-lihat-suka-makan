@@ -4,7 +4,6 @@ import com.example.lookies.PredictKueResponse
 import com.example.lookies.login.LoginResponse
 import com.example.lookies.register.RegisterResponse
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 

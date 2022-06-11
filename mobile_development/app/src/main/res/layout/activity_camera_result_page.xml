@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".camera.PreCameraCapture"
     tools:layout_editor_absoluteX="-8dp"
-    tools:layout_editor_absoluteY="12dp"
-    android:orientation="vertical">
+    tools:layout_editor_absoluteY="12dp">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabCamera"
@@ -22,13 +22,26 @@
         app:layout_constraintVertical_bias="0.95"
         tools:ignore="SpeakableTextPresentCheck" />
 
-
+    <ToggleButton
+        android:id="@+id/fabFavorite"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="10dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textOff=""
+        android:textOn=""
+        android:background="@drawable/ic_baseline_favorite_border_24"
+        app:layout_constraintBottom_toTopOf="@id/fabCamera"
+        app:layout_constraintEnd_toEndOf="@id/fabCamera"
+        app:layout_constraintStart_toStartOf="@id/fabCamera"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Is this what you're looking for?"
+                android:text="@string/question"
                 android:textColor="@color/magenta"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -87,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:text="Snack Name"
+                android:text="@string/snack_names"
                 android:textColor="@color/magenta"
                 android:textSize="22sp"
                 android:textStyle="bold"
