@@ -37,11 +37,11 @@ class SignInViewModel(private val pref: UserPreference) : ViewModel() {
         }
     }
 
-    fun postLogin(email: String, password: String){
+    fun postLogin(email: String, password: String) {
         _isLoad.value = true
         val client = ApiConfig.getApi().postLogin(email, password)
         client.enqueue(object : Callback<LoginResponse> {
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>){
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 _isLoad.value = false
                 if (response.isSuccessful && response.body() != null) {
                     _loginResp.value = response.body()
@@ -60,6 +60,12 @@ class SignInViewModel(private val pref: UserPreference) : ViewModel() {
             }
 
         })
+    }
+
+    fun userLogout() {
+        viewModelScope.launch {
+            pref.userLogout()
+        }
     }
 
     companion object {
