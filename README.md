@@ -23,4 +23,4 @@ Each of learning path in this team works collaboratively to deliver the product 
 
 ## Disclaimer
 * Lookies might be developed later to be beneficially used for related parties in a collaborative way.  
-* Lookies aims to add features to get involved in the business field, such as providing the market e-commerce feature and paid cook-tutoring service in the future development. 
+* Lookies aims to get involved in the business field, such as providing the market e-commerce feature and paid cook-tutoring service in the future development. 
