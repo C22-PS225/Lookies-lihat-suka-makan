@@ -1,11 +1,9 @@
 package com.example.lookies.camera
 
-import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Environment
 import android.view.View
-import android.widget.ScrollView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lookies.PredictKueResponse
@@ -16,7 +14,6 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.internal.http.HTTP_GONE
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,11 +24,10 @@ import java.io.FileOutputStream
 
 class CameraResultPage : AppCompatActivity() {
     private lateinit var binding: ActivityCameraResultPageBinding
-    private lateinit var shimmerLayout : ShimmerFrameLayout
+    private lateinit var shimmerLayout: ShimmerFrameLayout
 
-    companion object{
+    companion object {
         var imageSize = 150
-        private const val TAG = "dummyResultCamera"
         private const val IMAGE_BITMAP = "BitmapImage"
         private const val PHOTO = "file"
     }
@@ -41,23 +37,19 @@ class CameraResultPage : AppCompatActivity() {
         binding = ActivityCameraResultPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
         this.supportActionBar?.hide()
-        val imageFromIntent = intent.getParcelableExtra<bitmapImage>(IMAGE_BITMAP) as bitmapImage
+        val imageFromIntent = intent.getParcelableExtra<BitmapImage>(IMAGE_BITMAP) as BitmapImage
         binding.previewImageView.setImageBitmap(imageFromIntent.img)
         shimmerLayout = findViewById(R.id.myShimmer)
         shimmerLayout.startShimmer()
 
         predictKue(imageFromIntent.img)
 
-        binding.imgBackButton.setOnClickListener{
+        binding.imgBackButton.setOnClickListener {
             finish()
-        }
-        binding.fabCamera.setOnClickListener {
-            val intent = Intent(this@CameraResultPage, PreCameraCapture::class.java)
-            startActivity(intent)
         }
     }
 
-    private fun predictKue(image: Bitmap?){
+    private fun predictKue(image: Bitmap?) {
         val file = image?.let { imageToFile(it, "ImageFile.jpeg") }
 //        val file = image as File
         val requestImageFile = file!!.asRequestBody("image/jpeg".toMediaTypeOrNull())
@@ -74,7 +66,7 @@ class CameraResultPage : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
-                    if (responseBody != null ) {
+                    if (responseBody != null) {
                         binding.txtSnackName.text = responseBody.namaKue
                         binding.txtParagraph1.text = responseBody.paragaf1
                         binding.txtParagraph2.text = responseBody.paragaf2
@@ -89,7 +81,8 @@ class CameraResultPage : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<PredictKueResponse>, t: Throwable) {
-                Toast.makeText(this@CameraResultPage, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CameraResultPage, "Terjadi Kesalahan", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
     }
@@ -102,7 +95,9 @@ class CameraResultPage : AppCompatActivity() {
     private fun imageToFile(bitmap: Bitmap, newName: String): File? {
         var fileImage: File? = null
         return try {
-            fileImage = File(Environment.getExternalStorageDirectory().toString() + File.separator + newName)
+            fileImage = File(
+                Environment.getExternalStorageDirectory().toString() + File.separator + newName
+            )
             fileImage.createNewFile()
             val bos = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.JPEG, 0, bos)

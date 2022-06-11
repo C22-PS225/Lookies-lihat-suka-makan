@@ -149,7 +149,7 @@ class PreCameraCapture : AppCompatActivity() {
                     newImage = Bitmap.createScaledBitmap(newImage,
                         CameraResultPage.imageSize,
                         CameraResultPage.imageSize, false)
-                    val imageToSend = bitmapImage(newImage)
+                    val imageToSend = BitmapImage(newImage)
                     val intent = Intent(this, CameraResultPage::class.java)
                     intent.putExtra(IMAGE_BITMAP,imageToSend)
                     startActivity(intent)
@@ -161,7 +161,7 @@ class PreCameraCapture : AppCompatActivity() {
                     newImage = Bitmap.createScaledBitmap(newImage,
                         CameraResultPage.imageSize,
                         CameraResultPage.imageSize, false)
-                    val imageToSend = bitmapImage(newImage)
+                    val imageToSend = BitmapImage(newImage)
                     val intent = Intent(this, CameraResultPage::class.java)
                     intent.putExtra(IMAGE_BITMAP,imageToSend)
                     startActivity(intent)
