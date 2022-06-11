@@ -32,7 +32,6 @@ class SplashLookiesActivity : AppCompatActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
-
                     startActivity(Intent(this, SignInActivity::class.java))
                     finish()
                 }

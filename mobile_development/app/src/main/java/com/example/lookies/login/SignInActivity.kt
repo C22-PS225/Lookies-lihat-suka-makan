@@ -16,20 +16,18 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.example.lookies.*
+import com.example.lookies.R
+import com.example.lookies.UserModel
+import com.example.lookies.UserPreference
+import com.example.lookies.ViewModelFactory
 import com.example.lookies.databinding.ActivitySignInBinding
 import com.example.lookies.register.SignUpActivity
-
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
     private lateinit var viewModel: SignInViewModel
-
-    companion object {
-        private const val TAG = "SignInActivity"
-    }
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,9 +94,6 @@ class SignInActivity : AppCompatActivity() {
     private fun saveUserSession(user: UserModel) {
         viewModel.saveUser(user)
         viewModel.userLogin()
-        val intentToMain = Intent(this, MainActivity::class.java)
-        startActivity(intentToMain)
-        finish()
     }
 
     private fun showLoad(isLoad: Boolean) {
@@ -108,5 +103,9 @@ class SignInActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
+    }
+
+    companion object {
+        private const val TAG = "SignInActivity"
     }
 }
