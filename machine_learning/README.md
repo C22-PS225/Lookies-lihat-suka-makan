@@ -28,7 +28,7 @@ The used dataset were split into 3 sets, that are training, validation, and test
 ## The General Information and Architecture of The Pre-trained Model Using EfficientNetB3  
 
 ## The Indonesian Traditional Cakes Model Notebook 
-The built model generates 90.85% accuracy in testing. Please refer to this [link](https://github.com/C22-PS225/Lookies-lihat-suka-makan/blob/main/machine_learning/building_model_90_accuracies.ipynb) to view the complete steps and result.
+The built model generates 90.85% accuracy in testing. Please refer to this [link](https://github.com/C22-PS225/Lookies-lihat-suka-makan/blob/main/machine_learning/building_model_90_accuracy.ipynb) to view the complete steps and result.
 
 ## The Notebook of Predicting The Indonesian Traditionak Cakes Images  
 
