@@ -15,6 +15,7 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -31,8 +32,20 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/wall"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/logoutFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_baseline_logout_24"
+                app:layout_constraintEnd_toEndOf="@+id/floatingActionButton"
+                app:layout_constraintStart_toStartOf="@+id/floatingActionButton"
+                app:layout_constraintTop_toBottomOf="@+id/floatingActionButton" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/circleImageView2"
