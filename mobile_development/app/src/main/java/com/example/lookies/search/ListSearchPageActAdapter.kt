@@ -49,22 +49,6 @@ class ListSearchPageActAdapter(private val listCari: ArrayList<KueItem>) : Recyc
 
         holder.imgOpenBrowser.setOnClickListener {
 
-
-//            val builder = AlertDialog.Builder( holder.itemView.context)
-//            builder.setMessage("Ingin membuka $name di Browser ?")
-//                .setPositiveButton("Ya") { _, _ ->
-//                    val link = "https://www.google.com/search?q=$name"
-//                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
-//                    Toast.makeText(holder.itemView.context, "Membuka Browser", Toast.LENGTH_LONG).show()
-//                    holder.itemView.context.startActivity(intent)
-//                }
-//                .setNegativeButton("Tidak"
-//                ) { _, _ ->
-//                    // cancelled the dialog
-//                }
-//            builder.create()
-
-
             val builder1 = AlertDialog.Builder(holder.itemView.context)
             builder1.setMessage("Ingin membuka $name di Browser ?")
             builder1.setCancelable(true)

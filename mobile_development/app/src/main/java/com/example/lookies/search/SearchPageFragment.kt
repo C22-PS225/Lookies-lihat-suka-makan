@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lookies.PredictKueResponse
-import com.example.lookies.R
+import com.example.lookies.*
 import com.example.lookies.api.ApiConfig
 import com.example.lookies.databinding.FragmentSearchPageBinding
 import retrofit2.Call
@@ -60,7 +59,8 @@ class SearchPageFragment : Fragment() {
 
 //        list.addAll(listSpecial)
 //        showRecyclerList()
-//        cariKue()
+
+        cariKue()
         return root
     }
 
@@ -75,42 +75,33 @@ class SearchPageFragment : Fragment() {
 //            return listSearch
 //        }
 
-//    private fun cariKue(){
-//        val dataKue = resources.obtainTypedArray(R.array.data_kue)
-////        val array = ArrayList<DataSearchPage>()
-//        var array = ArrayList<DataSearchPage>()
-//
-//        for (i in 0 until dataKue.length()) {
-//            val namaKue = dataKue.getString(i)
+    private fun cariKue(){
+        val dataKue = resources.obtainTypedArray(R.array.data_kue)
+        for (i in 0 until dataKue.length()) {
+            val namaKue = dataKue.getString(i)
 //            Log.d(TAG,"ini merupakan nama kue = "+ namaKue)
-//            val client = ApiConfig.getApi().cariKue(namaKue!!)
-//            client.enqueue(object : Callback<PredictKueResponse> {
-//                override fun onResponse(call: Call<PredictKueResponse>, response: Response<PredictKueResponse>) {
-//                    if (response.isSuccessful) {
-//                        val responseBody = response.body()
-//                        if (responseBody != null) {
-//                            val photoUrl = responseBody.gambar
-////                            val namaKue = responseBody.namaKue
-////                            array = responseBody.listKosong
-//                            val dataSP = DataSearchPage(photoUrl)
-////                            val homedateList: List<DataSearchPage> = gson.fromJson(body, Array<DataSearchPage>::class.java).toList()
-//
-//                            array.add(dataSP)
-//                        }
-//                    } else {
-//                        Log.e(TAG, "onFailure : " + response.message())
-//                    }
-//                }
-//                override fun onFailure(call: Call<PredictKueResponse>, t: Throwable) {
-//                    Log.e(TAG, "onFailure: ${t.message}")
-//                }
-//            })
-//        }
-//
-//        showRecyclerList(array)
-//    }
+            val client = ApiConfig.getApi().getAllStory()
+            client.enqueue(object : Callback<GetAllResponse> {
+                override fun onResponse(call: Call<GetAllResponse>, response: Response<GetAllResponse>) {
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        if (responseBody != null) {
+                            showRecyclerList(responseBody.kue)
+                        }
+                    } else {
+                        Log.e(TAG, "onFailure : " + response.message())
+                    }
+                }
+                override fun onFailure(call: Call<GetAllResponse>, t: Throwable) {
+                    Log.e(TAG, "onFailure: ${t.message}")
+                }
+            })
+        }
 
-    private fun showRecyclerList(array: ArrayList<DataSearchPage>) {
+
+    }
+
+    private fun showRecyclerList(array: ArrayList<KueItem2>) {
 
         rcySearchPage.layoutManager = GridLayoutManager(requireActivity(), 2)
         val listSearchPage = ListSearchPageAdapter(array)

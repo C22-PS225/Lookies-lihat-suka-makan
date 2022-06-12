@@ -1,6 +1,7 @@
 package com.example.lookies.api
 
 import com.example.lookies.CariKueResponse
+import com.example.lookies.GetAllResponse
 import com.example.lookies.PredictKueResponse
 import com.example.lookies.login.LoginResponse
 import com.example.lookies.register.RegisterResponse
@@ -39,5 +40,9 @@ interface Api {
     fun cariKue(
         @Field("cari") cari: String,
     ): Call<CariKueResponse>
+
+    @GET("getallkue")
+    fun getAllStory(
+    ): Call<GetAllResponse>
 
 }

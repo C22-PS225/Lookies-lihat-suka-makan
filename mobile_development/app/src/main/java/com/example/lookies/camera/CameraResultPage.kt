@@ -64,45 +64,10 @@ class CameraResultPage : AppCompatActivity() {
             binding.previewImageView.setImageBitmap(imageFromIntent!!.img)
             predictKue(imageFromIntent!!.img)
         }else if(imageToDetail != ""){
-//            Toast.makeText(this@CameraResultPage, "Masuk sini gan", Toast.LENGTH_LONG).show()
-            Log.d(TAG,"Ini link foto = $imageToDetail" )
             Glide.with(this)
                 .load(imageToDetail)
-                .listener(object: RequestListener<Drawable> {
-                    override fun onLoadFailed(
-                        e: GlideException?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        return false
-                    }
-
-                    override fun onResourceReady(
-                        resource: Drawable?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        dataSource: DataSource?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-//                        Toast.makeText(this@CameraResultPage, "berhasil load", Toast.LENGTH_LONG).show()
-                        return false
-                    }
-                })
                 .into(binding.previewImageView)
-
             snackName?.let { cariKue(it) }
-//                if(binding.previewImageView.drawable != null){
-//                    val d = binding.previewImageView.drawable
-//                    val bitmap = (d as BitmapDrawable).bitmap
-//                    predictKue(bitmap)
-//                }else{
-//
-//                    shimmerLayout.stopShimmer()
-//                    shimmerLayout.visibility = View.GONE
-//                    binding.scrollView2.visibility = View.VISIBLE
-//                }
-
         }
         binding.imgBackButton.setOnClickListener {
             finish()
@@ -125,8 +90,6 @@ class CameraResultPage : AppCompatActivity() {
                         shimmerLayout.stopShimmer()
                         shimmerLayout.visibility = View.GONE
                         binding.scrollView2.visibility = View.VISIBLE
-
-//                        showRecyclerList(responseBody.kue)
                     }
                 } else {
                     Log.e(TAG, "onFailure : " + response.message())
@@ -136,7 +99,6 @@ class CameraResultPage : AppCompatActivity() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
-//        showRecyclerList(list)
     }
 
     private fun predictKue(image: Bitmap?) {
