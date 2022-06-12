@@ -24,6 +24,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".DetailCakesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".favorite.FavoriteCakesActivity"
+            android:exported="false" />
+        <activity
             android:name=".search.SearchPage"
             android:exported="false" />
         <activity
