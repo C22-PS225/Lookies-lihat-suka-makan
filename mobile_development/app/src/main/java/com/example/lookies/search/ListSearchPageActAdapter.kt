@@ -1,5 +1,6 @@
 package com.example.lookies.search
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lookies.KueItem
 import com.example.lookies.R
+import com.example.lookies.camera.CameraResultPage
 
 class ListSearchPageActAdapter(private val listCari: ArrayList<KueItem>) : RecyclerView.Adapter<ListSearchPageActAdapter.ListViewHolder>() {
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -23,7 +25,6 @@ class ListSearchPageActAdapter(private val listCari: ArrayList<KueItem>) : Recyc
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-//        val (name, description, photo) = listSpecial[position]
         val name = listCari[position].namaKue
         val photo = listCari[position].gambar
         var description = listCari[position].paragaf1
@@ -33,7 +34,19 @@ class ListSearchPageActAdapter(private val listCari: ArrayList<KueItem>) : Recyc
             .into(holder.imgPhoto)
         holder.tvName.text = name
         holder.tvDescription.text = description
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, CameraResultPage::class.java)
+            intent.putExtra(PHOTO, photo)
+            intent.putExtra(SNACK_NAME, name)
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = listCari.size
+
+    companion object{
+        private const val PHOTO = "photo"
+        private const val SNACK_NAME = "snack_name"
+    }
 }

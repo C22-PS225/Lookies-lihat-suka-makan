@@ -43,34 +43,19 @@ class SearchPage : AppCompatActivity() {
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Toast.makeText(this@SearchPage, "Mencari "+binding.mySearchView.query, Toast.LENGTH_LONG).show()
-                val keyword = binding.mySearchView.query.toString()
+                val keyword = binding.mySearchView.query.toString().trim()
                 cariKue(keyword)
 
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                //do semothing
+                //do something
                 return false
             }
         })
 
-//        list.addAll(listSpecial)
-//        showRecyclerList()
     }
-
-//    private val listSpecial: ArrayList<SpecialForYou>
-//        get() {
-//            val dataName = resources.getStringArray(R.array.data_name)
-//            val dataDescription = resources.getStringArray(R.array.data_description)
-//            val dataPhoto = resources.obtainTypedArray(R.array.data_photo)
-//            val listSearched = ArrayList<SpecialForYou>()
-//            for (i in dataName.indices) {
-//                val hero = SpecialForYou(dataName[i],dataDescription[i], dataPhoto.getResourceId(i, -1))
-//                listSearched.add(hero)
-//            }
-//            return listSearched
-//        }
 
     private fun showRecyclerList(list: ArrayList<KueItem>) {
         rcySearchPageAct.layoutManager = LinearLayoutManager(this)

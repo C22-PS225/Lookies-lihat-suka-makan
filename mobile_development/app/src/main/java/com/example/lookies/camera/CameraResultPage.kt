@@ -1,15 +1,25 @@
 package com.example.lookies.camera
 
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
+import com.example.lookies.CariKueResponse
 import com.example.lookies.PredictKueResponse
 import com.example.lookies.R
 import com.example.lookies.api.ApiConfig
 import com.example.lookies.databinding.ActivityCameraResultPageBinding
+import com.example.lookies.search.SearchPage
 import com.facebook.shimmer.ShimmerFrameLayout
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -25,11 +35,17 @@ import java.io.FileOutputStream
 class CameraResultPage : AppCompatActivity() {
     private lateinit var binding: ActivityCameraResultPageBinding
     private lateinit var shimmerLayout: ShimmerFrameLayout
+    private var imageToDetail: String? = ""
+    private var imageFromIntent: BitmapImage? = null
+    private var snackName: String? = ""
 
     companion object {
         var imageSize = 150
         private const val IMAGE_BITMAP = "BitmapImage"
         private const val PHOTO = "file"
+        private const val DETAIL_PHOTO = "photo"
+        private const val TAG = "CameraResultPage"
+        private const val SNACK_NAME = "snack_name"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,21 +53,94 @@ class CameraResultPage : AppCompatActivity() {
         binding = ActivityCameraResultPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
         this.supportActionBar?.hide()
-        val imageFromIntent = intent.getParcelableExtra<BitmapImage>(IMAGE_BITMAP) as BitmapImage
-        binding.previewImageView.setImageBitmap(imageFromIntent.img)
         shimmerLayout = findViewById(R.id.myShimmer)
-        shimmerLayout.startShimmer()
 
-        predictKue(imageFromIntent.img)
 
+        imageFromIntent = intent.getParcelableExtra(IMAGE_BITMAP)
+        imageToDetail = intent.getStringExtra(DETAIL_PHOTO)
+        snackName = intent.getStringExtra(SNACK_NAME)
+        if (imageFromIntent != null){
+            shimmerLayout.startShimmer()
+            binding.previewImageView.setImageBitmap(imageFromIntent!!.img)
+            predictKue(imageFromIntent!!.img)
+        }else if(imageToDetail != ""){
+//            Toast.makeText(this@CameraResultPage, "Masuk sini gan", Toast.LENGTH_LONG).show()
+            Log.d(TAG,"Ini link foto = $imageToDetail" )
+            Glide.with(this)
+                .load(imageToDetail)
+                .listener(object: RequestListener<Drawable> {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        return false
+                    }
+
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+//                        Toast.makeText(this@CameraResultPage, "berhasil load", Toast.LENGTH_LONG).show()
+                        return false
+                    }
+                })
+                .into(binding.previewImageView)
+
+            snackName?.let { cariKue(it) }
+//                if(binding.previewImageView.drawable != null){
+//                    val d = binding.previewImageView.drawable
+//                    val bitmap = (d as BitmapDrawable).bitmap
+//                    predictKue(bitmap)
+//                }else{
+//
+//                    shimmerLayout.stopShimmer()
+//                    shimmerLayout.visibility = View.GONE
+//                    binding.scrollView2.visibility = View.VISIBLE
+//                }
+
+        }
         binding.imgBackButton.setOnClickListener {
             finish()
         }
     }
 
+    private fun cariKue(namaKue: String){
+        val client = ApiConfig.getApi().cariKue(namaKue)
+        client.enqueue(object : Callback<CariKueResponse> {
+            override fun onResponse(call: Call<CariKueResponse>, response: Response<CariKueResponse>) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        val itemData = responseBody.kue[0]
+                        binding.txtSnackName.text = itemData.namaKue
+                        binding.txtParagraph1.text = itemData.paragaf1
+                        binding.txtParagraph2.text = itemData.paragaf2
+                        binding.txtIngredients.text = itemData.bahan
+
+                        shimmerLayout.stopShimmer()
+                        shimmerLayout.visibility = View.GONE
+                        binding.scrollView2.visibility = View.VISIBLE
+
+//                        showRecyclerList(responseBody.kue)
+                    }
+                } else {
+                    Log.e(TAG, "onFailure : " + response.message())
+                }
+            }
+            override fun onFailure(call: Call<CariKueResponse>, t: Throwable) {
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+        })
+//        showRecyclerList(list)
+    }
+
     private fun predictKue(image: Bitmap?) {
         val file = image?.let { imageToFile(it, "ImageFile.jpeg") }
-//        val file = image as File
         val requestImageFile = file!!.asRequestBody("image/jpeg".toMediaTypeOrNull())
         val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
             PHOTO,

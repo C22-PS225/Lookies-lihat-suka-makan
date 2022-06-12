@@ -136,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15sp"
-                android:text="Cooking Ingredients"
+                android:text="Bahan Memasak"
                 android:textColor="@color/magenta"
                 android:textSize="20sp"
                 android:textStyle="bold" />
