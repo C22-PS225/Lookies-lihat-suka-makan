@@ -1,20 +1,29 @@
 package com.example.lookies
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lookies.DetailCakesActivity.Companion.DETAIL_CAKES
 import com.example.lookies.databinding.ItemSpesialForYouBinding
 
 class CakesAdapter :
     RecyclerView.Adapter<CakesAdapter.ViewHolder>() {
-    private val listUsers = ArrayList<FavCakes>()
+    private val listCakes = ArrayList<KueItem>()
 
     inner class ViewHolder(private val binding: ItemSpesialForYouBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(cakes: FavCakes) {
+        fun bind(cakes: KueItem) {
             binding.apply {
                 tvItemName.text = cakes.namaKue
-                tvItemDescription.text = cakes.paragraf1
+                tvItemDescription.text = cakes.paragaf1
+                itemView.setOnClickListener {
+                    val intentToDetail = Intent(itemView.context, DetailCakesActivity::class.java)
+                    intentToDetail.putExtra(DETAIL_CAKES, cakes.gambar)
+                    intentToDetail.putExtra(DETAIL_CAKES, cakes.namaKue)
+                    intentToDetail.putExtra(DETAIL_CAKES, cakes.paragaf1)
+                    itemView.context.startActivity(intentToDetail)
+                }
             }
         }
     }
@@ -28,14 +37,14 @@ class CakesAdapter :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listUsers[position])
+        holder.bind(listCakes[position])
     }
 
-    fun getData(users: ArrayList<FavCakes>) {
-        listUsers.clear()
-        listUsers.addAll(users)
+    fun getData(cakes: ArrayList<KueItem>) {
+        listCakes.clear()
+        listCakes.addAll(cakes)
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = listUsers.size
+    override fun getItemCount(): Int = listCakes.size
 }
