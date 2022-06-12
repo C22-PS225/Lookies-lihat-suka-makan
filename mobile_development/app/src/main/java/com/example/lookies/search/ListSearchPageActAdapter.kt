@@ -9,9 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lookies.KueItem
 import com.example.lookies.R
-import com.example.lookies.SearchRes
 
-class ListSearchPageActAdapter(private val listSpecial: ArrayList<KueItem>) : RecyclerView.Adapter<ListSearchPageActAdapter.ListViewHolder>() {
+class ListSearchPageActAdapter(private val listCari: ArrayList<KueItem>) : RecyclerView.Adapter<ListSearchPageActAdapter.ListViewHolder>() {
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
         var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
@@ -25,10 +24,10 @@ class ListSearchPageActAdapter(private val listSpecial: ArrayList<KueItem>) : Re
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
 //        val (name, description, photo) = listSpecial[position]
-        val name = listSpecial[position].namaKue
-        val photo = listSpecial[position].gambar
-        var description = listSpecial[position].paragaf1
-        description = description.subSequence(0, 27).toString() + "..."
+        val name = listCari[position].namaKue
+        val photo = listCari[position].gambar
+        var description = listCari[position].paragaf1
+        description = description.subSequence(0, 50).toString() + "..."
         Glide.with(holder.itemView.context)
             .load(photo)
             .into(holder.imgPhoto)
@@ -36,5 +35,5 @@ class ListSearchPageActAdapter(private val listSpecial: ArrayList<KueItem>) : Re
         holder.tvDescription.text = description
     }
 
-    override fun getItemCount(): Int = listSpecial.size
+    override fun getItemCount(): Int = listCari.size
 }

@@ -1,8 +1,12 @@
 package com.example.lookies.search
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lookies.*
@@ -35,6 +39,22 @@ class SearchPage : AppCompatActivity() {
         Log.d(TAG,"Ini merupakan keyword kue = $keyWordCariKue")
         keyWordCariKue?.let { cariKue(it) }
 
+        binding.mySearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Toast.makeText(this@SearchPage, "Mencari "+binding.mySearchView.query, Toast.LENGTH_LONG).show()
+                val keyword = binding.mySearchView.query.toString()
+                cariKue(keyword)
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                //do semothing
+                return false
+            }
+        })
+
 //        list.addAll(listSpecial)
 //        showRecyclerList()
     }
@@ -59,21 +79,13 @@ class SearchPage : AppCompatActivity() {
     }
 
     private fun cariKue(namaKue: String){
-       val client = ApiConfig.getApi().cariKue(namaKue)
+        val client = ApiConfig.getApi().cariKue(namaKue)
         client.enqueue(object : Callback<CariKueResponse> {
             override fun onResponse(call: Call<CariKueResponse>, response: Response<CariKueResponse>) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        list.add(responseBody.kue[0])
-//                        val gambar = responseBody.gambar
-//                        val namaJajan = responseBody.namaKue
-//                        var desc = responseBody.paragaf1
-//                        desc = desc.subSequence(0, 27).toString() + "..."
-//                        val sr = SearchRes(namaJajan, desc, gambar)
-//                        list.add(sr)
-
-
+                        showRecyclerList(responseBody.kue)
                     }
                 } else {
                     Log.e(TAG, "onFailure : " + response.message())
@@ -83,7 +95,6 @@ class SearchPage : AppCompatActivity() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
-
         showRecyclerList(list)
     }
 }
