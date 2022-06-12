@@ -1,10 +1,12 @@
 package com.example.lookies.api
 
+import com.example.lookies.CariKueResponse
 import com.example.lookies.PredictKueResponse
 import com.example.lookies.login.LoginResponse
 import com.example.lookies.register.RegisterResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.*
 
 interface Api {
@@ -30,4 +32,12 @@ interface Api {
     fun uploadImage(
         @Part file: MultipartBody.Part
     ): Call<PredictKueResponse>
+
+
+    @FormUrlEncoded
+    @POST("carikue")
+    fun cariKue(
+        @Field("cari") cari: String,
+    ): Call<CariKueResponse>
+
 }
