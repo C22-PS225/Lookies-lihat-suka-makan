@@ -12,14 +12,15 @@
 
 
 # API Endpoint 
-|   Endpoint   |   Method   |        Body Sent (JSON)         |                 Description                |
-| :----------: | :--------: | :----------------------------:  | :----------------------------------------: |
-|     /        |     GET    |             None                |           Testing Endpoint & Server        |
-|   /login     | POST & GET |      username & password        |            Authentication for user         |
-|  /register   |    POST    | username, password, email, nama |             Registration for user          |
-| /predictkue  |    POST    |        file: Image file         |    HTTP POST REQUEST Prediction Endpoint   |
-|/kue/nama_kue |     GET    |             None                | Give the response about cake's description |
-|   /carikue   |    POST    |            String               |           do a search by cake name         |
+|   Endpoint   |   Method   |        Body Sent (JSON)         |                   Description                 |
+| :----------: | :--------: | :----------------------------:  | :-------------------------------------------: |
+|     /        |     GET    |             None                |             Testing Endpoint & Server         |
+|   /login     | POST & GET |      username & password        |              Authentication for user          |
+|  /register   |    POST    | username, password, email, nama |               Registration for user           |
+| /predictkue  |    POST    |        file: Image file         |      HTTP POST REQUEST Prediction Endpoint    |
+|/kue/nama_kue |     GET    |             None                |   Give the response about cake's description  |
+|   /carikue   |    POST    |            String               |             do a search by cake name          |
+|  /getallkue  |    GET     |             None                | Give the response about all cakes description |
 
 # How to predict image with Postman
 - Open Postman
