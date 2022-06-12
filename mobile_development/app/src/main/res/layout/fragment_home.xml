@@ -35,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10sp"
-                    android:layout_marginEnd="50sp"
+                    android:layout_weight="2"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
@@ -53,6 +53,7 @@
                         android:textColor="@color/magenta"
                         android:textSize="13sp"
                         android:textStyle="italic"
+
                         />
                 </LinearLayout>
 
@@ -62,6 +63,7 @@
                     android:layout_height="40sp"
                     android:layout_marginTop="5sp"
                     android:adjustViewBounds="false"
+                    android:layout_weight="1"
                     android:src="@drawable/favorite" />
             </LinearLayout>
 
@@ -103,7 +105,7 @@
                 android:textColor="@color/magenta"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:layout_marginTop="10sp"
+                android:layout_marginTop="20sp"
                 android:layout_marginStart="20sp"
                 />
             <View
@@ -117,6 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginStart="20sp"
                 android:layout_marginEnd="20sp"
+                android:layout_marginBottom="74dp"
                 android:layout_height="400sp">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -125,41 +128,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10sp" />
             </LinearLayout>
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/special"
-                android:textColor="@color/magenta"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:layout_marginTop="30sp"
-                android:layout_marginStart="20sp"
-                />
-            <View
-                android:layout_width="50sp"
-                android:layout_height="2sp"
-                android:layout_marginStart="60sp"
-                android:layout_marginTop="3sp"
-                android:background="@color/dark_purple" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginStart="20sp"
-                android:layout_marginEnd="20sp"
-                android:layout_marginTop="10sp"
-                android:layout_height="400sp">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcyViewSpesialForYou2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp" />
-            </LinearLayout>
         </LinearLayout>
-
     </ScrollView>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

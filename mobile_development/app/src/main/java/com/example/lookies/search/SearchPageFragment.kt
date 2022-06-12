@@ -53,60 +53,35 @@ class SearchPageFragment : Fragment() {
         _binding = FragmentSearchPageBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
         rcySearchPage = root.findViewById(R.id.rcySearchPage)
         rcySearchPage.setHasFixedSize(true)
 
-//        list.addAll(listSpecial)
-//        showRecyclerList()
-
-        cariKue()
+        getAllKue()
         return root
     }
 
-//    private val listSpecial: ArrayList<DataSearchPage>
-//        get() {
-//            val dataPhoto = resources.obtainTypedArray(R.array.data_photo)
-//            val listSearch = ArrayList<DataSearchPage>()
-//            for (i in 0 until dataPhoto.length()) {
-//                val sp = DataSearchPage(dataPhoto.getResourceId(i, -1))
-//                listSearch.add(sp)
-//            }
-//            return listSearch
-//        }
-
-    private fun cariKue(){
-        val dataKue = resources.obtainTypedArray(R.array.data_kue)
-        for (i in 0 until dataKue.length()) {
-            val namaKue = dataKue.getString(i)
-//            Log.d(TAG,"ini merupakan nama kue = "+ namaKue)
-            val client = ApiConfig.getApi().getAllStory()
-            client.enqueue(object : Callback<GetAllResponse> {
-                override fun onResponse(call: Call<GetAllResponse>, response: Response<GetAllResponse>) {
-                    if (response.isSuccessful) {
-                        val responseBody = response.body()
-                        if (responseBody != null) {
-                            showRecyclerList(responseBody.kue)
-                        }
-                    } else {
-                        Log.e(TAG, "onFailure : " + response.message())
+    private fun getAllKue(){
+        val client = ApiConfig.getApi().getAllStory()
+        client.enqueue(object : Callback<GetAllResponse> {
+            override fun onResponse(call: Call<GetAllResponse>, response: Response<GetAllResponse>) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        showRecyclerList(responseBody.kue)
                     }
+                } else {
+                    Log.e(TAG, "onFailure : " + response.message())
                 }
-                override fun onFailure(call: Call<GetAllResponse>, t: Throwable) {
-                    Log.e(TAG, "onFailure: ${t.message}")
-                }
-            })
-        }
-
-
+            }
+            override fun onFailure(call: Call<GetAllResponse>, t: Throwable) {
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+        })
     }
 
     private fun showRecyclerList(array: ArrayList<KueItem2>) {
-
         rcySearchPage.layoutManager = GridLayoutManager(requireActivity(), 2)
         val listSearchPage = ListSearchPageAdapter(array)
         rcySearchPage.adapter = listSearchPage
     }
-
-
 }

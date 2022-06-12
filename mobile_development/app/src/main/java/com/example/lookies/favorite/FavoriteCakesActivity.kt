@@ -46,12 +46,12 @@ class FavoriteCakesActivity : AppCompatActivity() {
     private fun mapUserList(it: List<FavCakes>): ArrayList<KueItem> {
         val listCakes = ArrayList<KueItem>()
         for (cakes in it) {
-            val favCakesMapped = KueItem(
-                cakes.namaKue,
-                cakes.gambar,
-                cakes.paragraf1,
-            )
-            listCakes.add(favCakesMapped)
+//            val favCakesMapped = KueItem(
+//                cakes.namaKue,
+//                cakes.gambar,
+//                cakes.paragraf1,
+//                )
+//            listCakes.add(favCakesMapped)
         }
         return listCakes
     }

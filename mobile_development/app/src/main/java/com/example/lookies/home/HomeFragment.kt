@@ -2,6 +2,7 @@ package com.example.lookies.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,19 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.lookies.GetAllResponse
+import com.example.lookies.KueItem2
 import com.example.lookies.R
-import com.example.lookies.search.SearchPage
+import com.example.lookies.api.ApiConfig
 import com.example.lookies.databinding.FragmentHomeBinding
+import com.example.lookies.search.SearchPage
 import com.example.lookies.favorite.FavoriteCakesActivity
+import com.example.lookies.search.SearchPageFragment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import kotlin.random.Random
 
 
 private const val ARG_PARAM1 = "param1"
@@ -24,12 +34,13 @@ class HomeFragment : Fragment() {
 
     companion object{
         private const val KEYWORD_KUE = "keyWordCariKue"
+        private const val TAG = "HomeFragment"
     }
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var rcySpecialForYou: RecyclerView
-    private lateinit var rcySpecialForYou2: RecyclerView
-    private val list = ArrayList<SpecialForYou>()
+    private val list = ArrayList<KueItem2>()
+    private val arrayInt = ArrayList<Int>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,11 +51,13 @@ class HomeFragment : Fragment() {
 
         rcySpecialForYou = root.findViewById(R.id.rcyViewSpesialForYou)
         rcySpecialForYou.setHasFixedSize(true)
-        rcySpecialForYou2 = root.findViewById(R.id.rcyViewSpesialForYou2)
-        rcySpecialForYou.setHasFixedSize(true)
 
-        list.addAll(listSpecial)
-        showRecyclerList()
+
+//        list.addAll(listSpecial)
+//        showRecyclerList()
+        getBanner()
+        getSpesial()
+
 
         binding.favCakes.setOnClickListener {
             val intentToFav = Intent(requireContext(), FavoriteCakesActivity::class.java)
@@ -68,32 +81,71 @@ class HomeFragment : Fragment() {
                 return false
             }
         })
-
-
-
         return root
     }
 
-    private val listSpecial: ArrayList<SpecialForYou>
-        get() {
-            val dataName = resources.getStringArray(R.array.data_name)
-            val dataDescription = resources.getStringArray(R.array.data_description)
-            val dataPhoto = resources.obtainTypedArray(R.array.data_photo)
-            val listHero = ArrayList<SpecialForYou>()
-            for (i in dataName.indices) {
-                val hero = SpecialForYou(dataName[i],dataDescription[i], dataPhoto.getResourceId(i, -1))
-                listHero.add(hero)
-            }
-            return listHero
-        }
-
-    private fun showRecyclerList() {
+    private fun showRecyclerList(list: ArrayList<KueItem2>) {
         rcySpecialForYou.layoutManager = LinearLayoutManager(requireActivity())
         val listHeroAdapter = ListSpecialForYouAdapter(list)
         rcySpecialForYou.adapter = listHeroAdapter
+    }
 
-        rcySpecialForYou2.layoutManager = LinearLayoutManager(requireActivity())
-        val listHeroAdapter2 = ListSpecialForYouAdapter(list)
-        rcySpecialForYou2.adapter = listHeroAdapter2
+    private fun getBanner(){
+        val client = ApiConfig.getApi().getAllStory()
+        client.enqueue(object : Callback<GetAllResponse> {
+            override fun onResponse(call: Call<GetAllResponse>, response: Response<GetAllResponse>) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        val random = Random.nextInt(0,15)
+                        Log.e(TAG, "NILAI RANDOM =  $random")
+                        val itemIndexPhoto = responseBody.kue[random].gambar
+                        Glide.with(requireContext())
+                            .load(itemIndexPhoto)
+                            .into(binding.imageBanner)
+                    }
+                } else {
+                    Log.e(TAG, "onFailure : " + response.message())
+                }
+            }
+            override fun onFailure(call: Call<GetAllResponse>, t: Throwable) {
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+        })
+    }
+
+    private fun getSpesial(){
+        list.clear()
+        arrayInt.clear()
+        val client = ApiConfig.getApi().getAllStory()
+        client.enqueue(object : Callback<GetAllResponse> {
+            override fun onResponse(call: Call<GetAllResponse>, response: Response<GetAllResponse>) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        val itemData = responseBody.kue
+                        var cc = 1
+                        while (cc <=5){
+                            val rand = Random.nextInt(0,15)
+                            if(!arrayInt.contains(rand)){
+                                arrayInt.add(rand)
+                                cc += 1
+                            }
+                            Log.e(TAG, "Bawah = $rand")
+                        }
+                        for(i in arrayInt){
+                            val data = itemData[i]
+                            list.add(data)
+                        }
+                        showRecyclerList(list)
+                    }
+                } else {
+                    Log.e(TAG, "onFailure : " + response.message())
+                }
+            }
+            override fun onFailure(call: Call<GetAllResponse>, t: Throwable) {
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+        })
     }
 }

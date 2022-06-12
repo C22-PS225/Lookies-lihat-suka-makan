@@ -22,6 +22,23 @@
         app:layout_constraintVertical_bias="0.95"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <ToggleButton
+        android:id="@+id/favBtn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/favorite_cakes"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintBottom_toTopOf="@+id/fabCamera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -37,19 +54,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ToggleButton
-                android:id="@+id/favBtn"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_marginTop="45dp"
-                android:layout_marginEnd="45dp"
-                android:background="@drawable/favorite_cakes"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:textOff=""
-                android:textOn=""
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
 
             <ImageView
                 android:id="@+id/imgBackButton"
@@ -180,4 +185,5 @@ pinch of salt\n
 
         </include>
     </com.facebook.shimmer.ShimmerFrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

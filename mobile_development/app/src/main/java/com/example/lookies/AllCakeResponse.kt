@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class AllCakeResponse(
 
     @field:SerializedName("kue")
-    val kue: ArrayList<KueItem>,
+    val kue: ArrayList<KueItem3>,
 
     @field:SerializedName("error")
     val error: String,
@@ -14,7 +14,7 @@ data class AllCakeResponse(
     val message: String
 )
 
-data class KueItem(
+data class KueItem3(
 
     @field:SerializedName("nama_kue")
     val namaKue: String,

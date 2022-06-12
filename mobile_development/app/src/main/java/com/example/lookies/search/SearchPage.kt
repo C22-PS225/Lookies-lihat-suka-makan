@@ -80,6 +80,6 @@ class SearchPage : AppCompatActivity() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
-        showRecyclerList(list)
+//        showRecyclerList(list)
     }
 }
