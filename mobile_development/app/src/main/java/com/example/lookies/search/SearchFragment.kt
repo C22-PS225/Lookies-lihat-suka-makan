@@ -36,6 +36,8 @@ class SearchFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+
+        private const val KEYWORD_KUE = "keyWordCariKue"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +72,7 @@ class SearchFragment : Fragment() {
                 Toast.makeText(context, "Mencari "+binding.mySearchView.query, Toast.LENGTH_LONG).show()
                 val intent = Intent(requireContext(), SearchPage::class.java)
                 val keyword = binding.mySearchView.query.toString()
-                intent.putExtra("keyWordCariKue",keyword)
+                intent.putExtra(KEYWORD_KUE,keyword)
                 startActivity(intent)
 
                 return false

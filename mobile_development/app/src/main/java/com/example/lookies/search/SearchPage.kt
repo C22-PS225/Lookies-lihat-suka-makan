@@ -24,6 +24,7 @@ class SearchPage : AppCompatActivity() {
 
     companion object{
         private const val TAG ="SearchPage"
+        private const val KEYWORD_KUE = "keyWordCariKue"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +36,7 @@ class SearchPage : AppCompatActivity() {
         rcySearchPageAct = findViewById(R.id.rcySearchPageAct)
         rcySearchPageAct.setHasFixedSize(true)
 
-        val keyWordCariKue = intent.getStringExtra("keyWordCariKue")
-        Log.d(TAG,"Ini merupakan keyword kue = $keyWordCariKue")
+        val keyWordCariKue = intent.getStringExtra(KEYWORD_KUE)
         keyWordCariKue?.let { cariKue(it) }
 
         binding.mySearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

@@ -21,6 +21,10 @@ private const val ARG_PARAM2 = "param2"
 
 
 class HomeFragment : Fragment() {
+
+    companion object{
+        private const val KEYWORD_KUE = "keyWordCariKue"
+    }
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var rcySpecialForYou: RecyclerView
@@ -52,6 +56,8 @@ class HomeFragment : Fragment() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Toast.makeText(context, "Mencari "+binding.mySearchView.query, Toast.LENGTH_LONG).show()
                 val intent = Intent(requireContext(), SearchPage::class.java)
+                val key = binding.mySearchView.query.toString().trim()
+                intent.putExtra(KEYWORD_KUE,key )
                 startActivity(intent)
 
                 return false
