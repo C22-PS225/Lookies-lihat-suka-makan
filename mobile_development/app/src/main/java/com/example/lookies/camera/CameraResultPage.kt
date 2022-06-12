@@ -6,11 +6,18 @@ import android.os.Environment
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.lookies.DetailCakesActivity.Companion.DETAIL_CAKES
+import com.example.lookies.MainViewModel
 import com.example.lookies.PredictKueResponse
 import com.example.lookies.R
 import com.example.lookies.api.ApiConfig
 import com.example.lookies.databinding.ActivityCameraResultPageBinding
 import com.facebook.shimmer.ShimmerFrameLayout
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -25,6 +32,7 @@ import java.io.FileOutputStream
 class CameraResultPage : AppCompatActivity() {
     private lateinit var binding: ActivityCameraResultPageBinding
     private lateinit var shimmerLayout: ShimmerFrameLayout
+    private lateinit var viewModel: MainViewModel
 
     companion object {
         var imageSize = 150
@@ -47,7 +55,42 @@ class CameraResultPage : AppCompatActivity() {
         binding.imgBackButton.setOnClickListener {
             finish()
         }
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        val idKue = intent.getIntExtra(DETAIL_CAKES, 0)
+        val gambar = intent.getStringExtra(DETAIL_CAKES)
+        val namaKue = intent.getStringExtra(DETAIL_CAKES)
+        val paragraf1 = intent.getStringExtra(DETAIL_CAKES)
+        var isFavorite = false
+        CoroutineScope(Dispatchers.IO).launch {
+            val cakes = viewModel.favCakes(idKue)
+            withContext(Dispatchers.Main) {
+                if (cakes != null) {
+                    if (cakes > 0) {
+                        binding.favBtn.isChecked = true
+                        isFavorite = true
+                    } else {
+                        binding.favBtn.isChecked = false
+                        isFavorite = false
+                    }
+                }
+            }
+        }
+        binding.favBtn.setOnClickListener {
+            isFavorite = !isFavorite
+            if (isFavorite) {
+                viewModel.addFavCakes(
+                    idKue,
+                    gambar.toString(),
+                    namaKue.toString(),
+                    paragraf1.toString()
+                )
+            } else {
+                viewModel.deleteFavCakes(idKue)
+            }
+            binding.favBtn.isChecked = isFavorite
+        }
     }
+
 
     private fun predictKue(image: Bitmap?) {
         val file = image?.let { imageToFile(it, "ImageFile.jpeg") }

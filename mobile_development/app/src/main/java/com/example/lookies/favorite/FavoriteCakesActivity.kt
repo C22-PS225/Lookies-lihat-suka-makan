@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lookies.CakesAdapter
 import com.example.lookies.FavCakes
+import com.example.lookies.KueItem
 import com.example.lookies.MainViewModel
 import com.example.lookies.databinding.ActivityFavoriteCakesBinding
 
@@ -21,8 +22,13 @@ class FavoriteCakesActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-
+        this.supportActionBar?.hide()
         adapter = CakesAdapter()
+
+        binding.imgBackButton.setOnClickListener {
+            finish()
+        }
+
         binding.apply {
             rvFavCakes.layoutManager = LinearLayoutManager(this@FavoriteCakesActivity)
             rvFavCakes.setHasFixedSize(true)
@@ -37,17 +43,21 @@ class FavoriteCakesActivity : AppCompatActivity() {
         }
     }
 
-    private fun mapUserList(it: List<FavCakes>): ArrayList<FavCakes> {
-        val listCakes = ArrayList<FavCakes>()
+    private fun mapUserList(it: List<FavCakes>): ArrayList<KueItem> {
+        val listCakes = ArrayList<KueItem>()
         for (cakes in it) {
-            val favUserMapped = FavCakes(
-                cakes.idKue,
-                cakes.gambar,
+            val favCakesMapped = KueItem(
                 cakes.namaKue,
-                cakes.paragraf1
+                cakes.gambar,
+                cakes.paragraf1,
             )
-            listCakes.add(favUserMapped)
+            listCakes.add(favCakesMapped)
         }
         return listCakes
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }
