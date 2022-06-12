@@ -65,4 +65,25 @@
         <item>@drawable/dadargulungubiungu</item>
     </integer-array>
 
+    <string-array name="data_kue">
+        <item>kue ape</item>
+<!--        <item>kue bika ambon</item>-->
+<!--        <item>kue cenil</item>-->
+<!--        <item>kue dadar gulung</item>-->
+<!--        <item>kue gethuk lindri</item>-->
+<!--        <item>kue kastengel</item>-->
+<!--        <item>kue klepon</item>-->
+<!--        <item>kue lapis</item>-->
+<!--        <item>kue lemper</item>-->
+<!--        <item>kue lumpur</item>-->
+<!--        <item>kue nagasari</item>-->
+<!--        <item>kue pastel</item>-->
+<!--        <item>kue putri salju</item>-->
+<!--        <item>kue putu ayu</item>-->
+<!--        <item>kue risoles</item>-->
+<!--        <item>kue serabi</item>-->
+    </string-array>
+
+
+
 </resources>
