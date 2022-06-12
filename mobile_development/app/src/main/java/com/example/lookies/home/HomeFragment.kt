@@ -16,6 +16,7 @@ import com.example.lookies.GetAllResponse
 import com.example.lookies.KueItem2
 import com.example.lookies.R
 import com.example.lookies.api.ApiConfig
+import com.example.lookies.camera.CameraResultPage
 import com.example.lookies.databinding.FragmentHomeBinding
 import com.example.lookies.search.SearchPage
 import com.example.lookies.favorite.FavoriteCakesActivity
@@ -35,12 +36,17 @@ class HomeFragment : Fragment() {
     companion object{
         private const val KEYWORD_KUE = "keyWordCariKue"
         private const val TAG = "HomeFragment"
+        private const val PHOTO = "photo"
+        private const val SNACK_NAME = "snack_name"
     }
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var rcySpecialForYou: RecyclerView
     private val list = ArrayList<KueItem2>()
     private val arrayInt = ArrayList<Int>()
+    private lateinit var bannerName: String
+    private lateinit var bannerPhoto: String
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,11 +58,15 @@ class HomeFragment : Fragment() {
         rcySpecialForYou = root.findViewById(R.id.rcyViewSpesialForYou)
         rcySpecialForYou.setHasFixedSize(true)
 
-
-//        list.addAll(listSpecial)
-//        showRecyclerList()
         getBanner()
         getSpesial()
+
+        binding.imageBanner.setOnClickListener {
+            val intent = Intent(requireContext(), CameraResultPage::class.java)
+            intent.putExtra(PHOTO, bannerPhoto)
+            intent.putExtra(SNACK_NAME, bannerName)
+           startActivity(intent)
+        }
 
 
         binding.favCakes.setOnClickListener {
@@ -100,6 +110,8 @@ class HomeFragment : Fragment() {
                         val random = Random.nextInt(0,15)
                         Log.e(TAG, "NILAI RANDOM =  $random")
                         val itemIndexPhoto = responseBody.kue[random].gambar
+                        bannerName = responseBody.kue[random].namaKue
+                        bannerPhoto = responseBody.kue[random].gambar
                         Glide.with(requireContext())
                             .load(itemIndexPhoto)
                             .into(binding.imageBanner)
