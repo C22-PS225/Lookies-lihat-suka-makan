@@ -3,11 +3,16 @@ package com.example.lookies
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val _listCakes = MutableLiveData<Cakes>()
+    val listCakes: LiveData<Cakes> = _listCakes
+
     private var favCakesDao: FavCakesDao
     private var favCakesDb: FavCakesDatabase = FavCakesDatabase.getDatabase(application)
 
@@ -35,4 +40,5 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun getFavCakes(): LiveData<List<FavCakes>> {
         return favCakesDao.getFavCakes()
     }
+
 }
