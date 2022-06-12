@@ -30,3 +30,5 @@
 - Change key from form-data with file (it must be named `file`)
 - Input the image that you want predict as a value of the key
 - Send the request
+
+All documentation is available at the following link [Backend Lookies](https://docs.google.com/document/d/1DJtzpo6faHhJVCuhFpu-H61cSzF1fmpW5jW_5UTxEV8/edit?usp=sharing)
