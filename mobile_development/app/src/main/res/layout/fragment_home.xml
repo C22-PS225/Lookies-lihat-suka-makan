@@ -57,6 +57,7 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/favCakes"
                     android:layout_width="40sp"
                     android:layout_height="40sp"
                     android:layout_marginTop="5sp"

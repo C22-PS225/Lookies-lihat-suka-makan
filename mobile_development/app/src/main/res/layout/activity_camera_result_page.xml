@@ -22,21 +22,6 @@
         app:layout_constraintVertical_bias="0.95"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <ToggleButton
-        android:id="@+id/fabFavorite"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="10dp"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:textOff=""
-        android:textOn=""
-        android:background="@drawable/ic_baseline_favorite_border_24"
-        app:layout_constraintBottom_toTopOf="@id/fabCamera"
-        app:layout_constraintEnd_toEndOf="@id/fabCamera"
-        app:layout_constraintStart_toStartOf="@id/fabCamera"
-        tools:ignore="SpeakableTextPresentCheck" />
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"

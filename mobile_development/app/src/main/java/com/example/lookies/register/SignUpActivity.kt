@@ -19,12 +19,13 @@ import com.example.lookies.databinding.ActivitySignUpBinding
 import com.example.lookies.login.PassEditText
 import com.example.lookies.login.SignInActivity
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
+
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var passEditText: PassEditText
     private lateinit var viewModel: SignUpViewModel
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

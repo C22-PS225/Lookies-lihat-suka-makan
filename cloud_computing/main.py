@@ -115,8 +115,18 @@ class carikue(Resource):
         if kue is not None and len(kue) >=1 :
             return make_response(jsonify(kue),200)
         else :
-            return make_response(jsonify({"msg":"Kue tidak ditemukan"}),404)                      
-            
+            return make_response(jsonify({"msg":"Kue tidak ditemukan"}),404)
+        
+class getAllKue(Resource):
+    def get(self):
+        cur = mysql.connection.cursor()
+        cur.execute("Select * from kue")
+        kue = cur.fetchall()
+        cur.close()
+        if kue is not None and len(kue) >1 :
+            return make_response(jsonify({"error":"false","message":"Deskripsi kue berhasil dipanggil","kue": >
+        else :
+            return make_response(jsonify({"error":"True","message":"Kue tidak ditemukan"}),404)            
 
 api.add_resource(RegisterUser, "/register", methods=["POST"])
 api.add_resource(LoginUser, "/login", methods=["POST", "GET"])
@@ -124,6 +134,7 @@ api.add_resource(kue, "/kue/<string:hasil_ML>", methods=["GET"])
 api.add_resource(resep, "/resep/<string:hasil_ML>", methods=["GET"])
 api.add_resource(predict, "/predictkue", methods=["POST"])
 api.add_resource(carikue, "/carikue", methods=["POST"])
+api.add_resource(getAllKue, "/getallkue", methods=["GET"])                                          
 #jalankan aplikasi
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
