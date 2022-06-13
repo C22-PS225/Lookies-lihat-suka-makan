@@ -2,6 +2,11 @@
 As a machine learning engineers, we mainly contributed in making a model using Keras in TensorFlow to classify the Indonesian traditional cakes images that will be captured by Lookies. To encapsulate the machine learning path guidelines in this project, here are some points to consider:
 
 ## Machine Learning Job Desc  
+* Collect the dataset
+* Pre-processing the images using ImageDataGenerator
+* Create and Training model
+* Saved the best model
+* Predict some images with the best model
 
 ## Collecting The Dataset  
 For building Lookies prototype, we collected around 3500 images of 16 Indonesian traditional cakes varieties, which are:
@@ -22,7 +27,7 @@ For building Lookies prototype, we collected around 3500 images of 16 Indonesian
 15. Kastegel
 16. Kue ape  
 
-The used dataset were split into 3 sets, that are training, validation, and testing set. The training set contains 105 to 200 images of each cake's class, whereas 20 images are included in validation and testing set respectively in each of the cake's class. We collected dataset manually from various sources, such as [google search](https://www.google.co.id/), [Kaggle](https://www.kaggle.com/datasets/widyaameliaputri/indonesian-traditional-cakes), own picture (take a picture), [Compressed dataset](https://github.com/C22-PS225/Lookies-lihat-suka-makan/blob/main/machine_learning/Compress_Image.ipynb), and [Dataset](https://drive.google.com/drive/folders/18xNo8JsFSIKO4ccCtwDAQQIrGv6DXSKj?usp=sharing).
+The used dataset were split into 3 sets, that are training, validation, and testing set. The training set contains 105 to 200 images of each cake's class, whereas 20 images are included in validation and testing set respectively in each of the cake's class. We collected dataset manually from various sources, such as [google search](https://www.google.co.id/), [Kaggle](https://www.kaggle.com/datasets/ilhamfp31/kue-indonesia), own picture (take a picture), [Compressed dataset](https://github.com/C22-PS225/Lookies-lihat-suka-makan/blob/main/machine_learning/Compress_Image.ipynb), and [Dataset](https://drive.google.com/drive/folders/18xNo8JsFSIKO4ccCtwDAQQIrGv6DXSKj?usp=sharing).
 
 ## The General Information of The Pre-trained Model Using EfficientNetB3  
 The `EfficientNetB3`is a model that extracts some important features by adapting the equilibrium between the depth, width, and resolution of a network. We choose `EfficientNetB3` because this model had the best accuracy than the other models we tested .
@@ -35,3 +40,4 @@ After had the model, we use the model to predict some images. Please refer to th
 
 ## References
 * [Baek, S., Jeon, J., Jeong, B., & Jeong, Y. S. (2021). Two-stage hybrid malware detection using deep learning. *Human-Centric Computing And Information Sciences, 11*, 2021.](http://hcisj.com/data/file/article/2021063002/11-27.pdf)
+* kaggle.com. (2020). Kue Indonesia. Access on May 5th, 2022, from this [link] (https://www.kaggle.com/datasets/widyaameliaputri/indonesian-traditional-cakes).
