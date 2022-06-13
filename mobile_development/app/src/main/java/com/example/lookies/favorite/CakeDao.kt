@@ -4,15 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
-interface CakeDao{
+interface CakeDao {
     @Query("SELECT * FROM cakes ")
     fun getUsers(): LiveData<List<CakeEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertCake(user: CakeEntity)
+    fun insertCake(cakes: CakeEntity)
 
     @Delete
-    fun deleteCake(user: CakeEntity)
+    fun deleteCake(cakes: CakeEntity)
 
     @Query("SELECT EXISTS(SELECT * FROM cakes WHERE name = :name )")
     fun isFavourite(name: String): LiveData<Boolean>
