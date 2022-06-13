@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.lookies.response.KueItem2
 import com.example.lookies.camera.CameraResultPage
 import com.example.lookies.databinding.ItemSearchBinding
+import com.example.lookies.response.KueItem2
 
 class ListSearchPageAdapter(private val listSearchPage: ArrayList<KueItem2>) : RecyclerView.Adapter<ListSearchPageAdapter.ListViewHolder>() {
     class ListViewHolder(var binding: ItemSearchBinding) : RecyclerView.ViewHolder(binding.root)

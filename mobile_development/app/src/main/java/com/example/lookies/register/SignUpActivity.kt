@@ -13,11 +13,11 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.example.lookies.main.UserPreference
-import com.example.lookies.main.ViewModelFactory
 import com.example.lookies.databinding.ActivitySignUpBinding
 import com.example.lookies.login.PassEditText
 import com.example.lookies.login.SignInActivity
+import com.example.lookies.main.UserPreference
+import com.example.lookies.main.ViewModelFactory
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 

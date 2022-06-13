@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lookies.*
+import com.example.lookies.R
 import com.example.lookies.api.ApiConfig
 import com.example.lookies.databinding.FragmentSearchPageBinding
 import com.example.lookies.response.GetAllResponse

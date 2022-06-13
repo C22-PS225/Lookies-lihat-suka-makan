@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lookies.*
+import com.example.lookies.R
 import com.example.lookies.api.ApiConfig
 import com.example.lookies.databinding.ActivitySearchPageBinding
 import com.example.lookies.response.CariKueResponse

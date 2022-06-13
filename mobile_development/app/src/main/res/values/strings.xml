@@ -5,13 +5,11 @@
     <string name="login">Masuk</string>
     <string name="username">Nama pengguna</string>
     <string name="username_error">Masukkan nama pengguna</string>
-    <string name="name_error">Masukkan nama</string>
     <string name="email_error">Email tidak ada</string>
     <string name="password">Kata sandi</string>
     <string name="pass_message">Kata sandi kurang dari 8 karakter</string>
     <string name="password_error">Masukkan kata sandi</string>
     <string name="question">Apakah ini yang kamu cari?</string>
-    <string name="cakes">Kue</string>
     <string name="app_label">\@Lookies2022</string>
     <string name="create">Klik disini</string>
     <string name="acc">Belum punya akun?</string>
@@ -30,63 +28,8 @@
     <string name="looking_for">Apa yang kamu cari hari ini? :)</string>
     <string name="special">Spesial Untuk Kamu ~</string>
     <string name="info">Fitur ini masih dalam pengembangan, harap bersabar yaa :D</string>
-    <string name="most_search">Pencarian Terbanyak</string>
     <string name="recommeded_for_you">Rekomendasi untuk kamu</string>
     <string name="snack_names">Nama Kue Tradisional</string>
-
-    <string-array name="data_name">
-        <item>Dadar Gulung Ubi Ungu</item>
-        <item>Dadar Gulung Ubi Ungu</item>
-        <item>Dadar Gulung Ubi Ungu</item>
-        <item>Dadar Gulung Ubi Ungu</item>
-        <item>Dadar Gulung Ubi Ungu</item>
-        <item>Dadar Gulung Ubi Ungu</item>
-        <item>Dadar Gulung Ubi Ungu</item>
-        <item>Dadar Gulung Ubi Ungu</item>
-        <item>Dadar Gulung Ubi Ungu</item>
-    </string-array>
-    <string-array name="data_description">
-        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
-        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
-        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
-        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
-        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
-        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
-        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
-        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
-        <item>Ini merupakan makanan yang terbuat dari ubi ungu ya gais </item>
-    </string-array>
-    <integer-array name="data_photo">
-        <item>@drawable/dadargulungubiungu</item>
-        <item>@drawable/dadargulungubiungu</item>
-        <item>@drawable/dadargulungubiungu</item>
-        <item>@drawable/dadargulungubiungu</item>
-        <item>@drawable/dadargulungubiungu</item>
-        <item>@drawable/dadargulungubiungu</item>
-        <item>@drawable/dadargulungubiungu</item>
-        <item>@drawable/dadargulungubiungu</item>
-        <item>@drawable/dadargulungubiungu</item>
-    </integer-array>
-
-    <string-array name="data_kue">
-        <item>kue ape</item>
-<!--        <item>kue bika ambon</item>-->
-<!--        <item>kue cenil</item>-->
-<!--        <item>kue dadar gulung</item>-->
-<!--        <item>kue gethuk lindri</item>-->
-<!--        <item>kue kastengel</item>-->
-<!--        <item>kue klepon</item>-->
-<!--        <item>kue lapis</item>-->
-<!--        <item>kue lemper</item>-->
-<!--        <item>kue lumpur</item>-->
-<!--        <item>kue nagasari</item>-->
-<!--        <item>kue pastel</item>-->
-<!--        <item>kue putri salju</item>-->
-<!--        <item>kue putu ayu</item>-->
-<!--        <item>kue risoles</item>-->
-<!--        <item>kue serabi</item>-->
-    </string-array>
-
 
 
 </resources>

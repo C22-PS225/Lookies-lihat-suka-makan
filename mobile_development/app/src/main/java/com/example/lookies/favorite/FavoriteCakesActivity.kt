@@ -3,9 +3,8 @@ package com.example.lookies.favorite
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.lookies.Injection
-import com.example.lookies.R
 import com.example.lookies.databinding.ActivityFavoriteCakesBinding
+import com.example.lookies.injection.Injection
 
 class FavoriteCakesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteCakesBinding
@@ -30,22 +29,4 @@ class FavoriteCakesActivity : AppCompatActivity() {
             finish()
         }
     }
-
-//    private fun mapUserList(it: List<FavCakes>): ArrayList<KueItem> {
-//        val listCakes = ArrayList<KueItem>()
-//        for (cakes in it) {
-////            val favCakesMapped = KueItem(
-////                cakes.namaKue,
-////                cakes.gambar,
-////                cakes.paragraf1,
-////                )
-////            listCakes.add(favCakesMapped)
-//        }
-//        return listCakes
-//    }
-//
-//    override fun onSupportNavigateUp(): Boolean {
-//        onBackPressed()
-//        return super.onSupportNavigateUp()
-//    }
 }

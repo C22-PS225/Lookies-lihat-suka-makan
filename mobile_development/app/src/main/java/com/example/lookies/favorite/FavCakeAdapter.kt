@@ -6,13 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.lookies.CakeCallback
-import com.example.lookies.CakeEntity
-import com.example.lookies.Injection
 import com.example.lookies.camera.CameraResultPage
 import com.example.lookies.databinding.ItemSpesialForYou2Binding
-import com.example.lookies.databinding.ItemSpesialForYouBinding
-import com.example.lookies.home.ListSpecialForYouAdapter
+import com.example.lookies.injection.Injection
 
 class FavCakeAdapter : RecyclerView.Adapter<FavCakeAdapter.FavoriteGithubUserHolder>() {
     private val listFavGithubUser = ArrayList<CakeEntity>()

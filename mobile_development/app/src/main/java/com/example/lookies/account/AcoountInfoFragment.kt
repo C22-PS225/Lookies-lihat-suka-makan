@@ -6,16 +6,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.lookies.main.UserPreference
-import com.example.lookies.main.ViewModelFactory
 import com.example.lookies.databinding.FragmentAcoountInfoBinding
 import com.example.lookies.login.SignInActivity
 import com.example.lookies.login.SignInViewModel
+import com.example.lookies.main.UserPreference
+import com.example.lookies.main.ViewModelFactory
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
@@ -43,6 +44,9 @@ class AcoountInfo : Fragment() {
             viewModel.userLogout()
             startActivity(Intent(requireActivity(), SignInActivity::class.java))
             activity?.finish()
+        }
+        binding.floatingActionButton.setOnClickListener {
+            Toast.makeText(requireContext(), "Fitur ini masih dalam tahap pengembangan", Toast.LENGTH_LONG).show()
         }
     }
 }

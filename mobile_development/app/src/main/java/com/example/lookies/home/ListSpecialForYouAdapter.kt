@@ -11,9 +11,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.lookies.response.KueItem2
 import com.example.lookies.R
 import com.example.lookies.camera.CameraResultPage
+import com.example.lookies.response.KueItem2
 
 class ListSpecialForYouAdapter(private val listSpecial: ArrayList<KueItem2>) : RecyclerView.Adapter<ListSpecialForYouAdapter.ListViewHolder>() {
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

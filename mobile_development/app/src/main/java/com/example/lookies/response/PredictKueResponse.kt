@@ -1,6 +1,5 @@
 package com.example.lookies.response
 
-import com.example.lookies.search.DataSearchPage
 import com.google.gson.annotations.SerializedName
 
 data class PredictKueResponse(

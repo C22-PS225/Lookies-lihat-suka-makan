@@ -16,7 +16,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.example.lookies.*
+import com.example.lookies.R
 import com.example.lookies.data_class.UserModel
 import com.example.lookies.databinding.ActivitySignInBinding
 import com.example.lookies.main.MainActivity

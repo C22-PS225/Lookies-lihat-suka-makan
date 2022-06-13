@@ -12,14 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.lookies.response.GetAllResponse
-import com.example.lookies.response.KueItem2
 import com.example.lookies.R
 import com.example.lookies.api.ApiConfig
 import com.example.lookies.camera.CameraResultPage
 import com.example.lookies.databinding.FragmentHomeBinding
-import com.example.lookies.search.SearchPage
 import com.example.lookies.favorite.FavoriteCakesActivity
+import com.example.lookies.response.GetAllResponse
+import com.example.lookies.response.KueItem2
+import com.example.lookies.search.SearchPage
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

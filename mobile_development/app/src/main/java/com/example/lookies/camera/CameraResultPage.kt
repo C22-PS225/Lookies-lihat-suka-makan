@@ -9,13 +9,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
-import com.example.lookies.CakeEntity
-import com.example.lookies.Injection
-import com.example.lookies.response.CariKueResponse
-import com.example.lookies.response.PredictKueResponse
 import com.example.lookies.R
 import com.example.lookies.api.ApiConfig
 import com.example.lookies.databinding.ActivityCameraResultPageBinding
+import com.example.lookies.favorite.CakeEntity
+import com.example.lookies.injection.Injection
+import com.example.lookies.response.CariKueResponse
+import com.example.lookies.response.PredictKueResponse
 import com.facebook.shimmer.ShimmerFrameLayout
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
