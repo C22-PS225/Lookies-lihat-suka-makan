@@ -2,11 +2,13 @@ package com.example.lookies.camera
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
@@ -17,6 +19,7 @@ import com.example.lookies.favorite.CakeEntity
 import com.example.lookies.injection.Injection
 import com.example.lookies.response.CariKueResponse
 import com.example.lookies.response.PredictKueResponse
+import com.example.lookies.rotateBitmap
 import com.facebook.shimmer.ShimmerFrameLayout
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -38,6 +41,7 @@ class CameraResultPage : AppCompatActivity() {
     private var snackName: String? = ""
     private var snackPhoto: String? = ""
     private var snackDesc: String? = ""
+    private var result: Bitmap? = null
 
     companion object {
         var imageSize = 150
@@ -107,11 +111,13 @@ class CameraResultPage : AppCompatActivity() {
         }
 
         binding.fabCamera.setOnClickListener {
-            val intent = Intent(this@CameraResultPage, CameraActivity::class.java)
+            val intent = Intent(this, PreCameraCapture::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP;
             startActivity(intent)
+            
         }
-
     }
+
 
     private fun cariKue(namaKue: String){
         val client = ApiConfig.getApi().cariKue(namaKue)
