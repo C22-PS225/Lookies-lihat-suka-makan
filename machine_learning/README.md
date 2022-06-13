@@ -40,4 +40,4 @@ After had the model, we use the model to predict some images. Please refer to th
 
 ## References
 * [Baek, S., Jeon, J., Jeong, B., & Jeong, Y. S. (2021). Two-stage hybrid malware detection using deep learning. *Human-Centric Computing And Information Sciences, 11*, 2021.](http://hcisj.com/data/file/article/2021063002/11-27.pdf)
-* kaggle.com. (2020). Kue Indonesia. Access on May 5th, 2022, from this [link](https://www.kaggle.com/datasets/ilhamfp31/kue-indonesia)
+* kaggle.com. (2020). Kue Indonesia. Access on May 5th, 2022, from this [link](https://www.kaggle.com/datasets/ilhamfp31/kue-indonesia).
