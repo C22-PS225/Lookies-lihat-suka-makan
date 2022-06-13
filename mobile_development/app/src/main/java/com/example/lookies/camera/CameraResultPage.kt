@@ -1,5 +1,6 @@
 package com.example.lookies.camera
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Environment
@@ -75,22 +76,24 @@ class CameraResultPage : AppCompatActivity() {
 
         val repo = Injection.provideRepository(this)
 
-        repo.isFavorite(snackName!!).observe(this) {
-            isFav = it
-            if (it) {
-                binding.fabFav.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        this,
-                        R.drawable.ic_baseline_favorite_24
+        snackName?.let {
+            repo.isFavorite(it).observe(this) {
+                isFav = it
+                if (it) {
+                    binding.fabFav.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_baseline_favorite_24
+                        )
                     )
-                )
-            } else {
-                binding.fabFav.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        this,
-                        R.drawable.ic_baseline_favorite_border_24
+                } else {
+                    binding.fabFav.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_baseline_favorite_border_24
+                        )
                     )
-                )
+                }
             }
         }
 
@@ -101,6 +104,11 @@ class CameraResultPage : AppCompatActivity() {
             }else{
                 repo.insertCake(usersEntity)
             }
+        }
+
+        binding.fabCamera.setOnClickListener {
+            val intent = Intent(this@CameraResultPage, CameraActivity::class.java)
+            startActivity(intent)
         }
 
     }
@@ -154,7 +162,6 @@ class CameraResultPage : AppCompatActivity() {
                     val responseBody = response.body()
                     if (responseBody != null) {
                         snackName = responseBody.namaKue
-                        //ini pakai gambar dari API bukan kamera
                         snackPhoto = responseBody.gambar
                         snackDesc = responseBody.paragaf1.substring(0,50)+"..."
                         binding.txtSnackName.text = responseBody.namaKue
