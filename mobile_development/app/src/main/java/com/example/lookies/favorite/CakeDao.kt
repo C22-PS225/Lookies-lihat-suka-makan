@@ -15,5 +15,5 @@ interface CakeDao{
     fun deleteCake(user: CakeEntity)
 
     @Query("SELECT EXISTS(SELECT * FROM cakes WHERE name = :name )")
-    fun isFavourite(name: String): LiveData<Boolean>
+    fun isFavourite(name: String?): LiveData<Boolean>
 }

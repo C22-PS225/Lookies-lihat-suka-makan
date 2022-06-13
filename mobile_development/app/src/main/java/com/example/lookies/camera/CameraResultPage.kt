@@ -16,6 +16,7 @@ import com.example.lookies.R
 import com.example.lookies.api.ApiConfig
 import com.example.lookies.databinding.ActivityCameraResultPageBinding
 import com.example.lookies.favorite.CakeEntity
+import com.example.lookies.favorite.CakeRepo
 import com.example.lookies.injection.Injection
 import com.example.lookies.response.CariKueResponse
 import com.example.lookies.response.PredictKueResponse
@@ -36,12 +37,12 @@ class CameraResultPage : AppCompatActivity() {
     private var isFav: Boolean? = null
     private lateinit var binding: ActivityCameraResultPageBinding
     private lateinit var shimmerLayout: ShimmerFrameLayout
+    private lateinit var repo: CakeRepo
     private var imageToDetail: String? = ""
     private var imageFromIntent: BitmapImage? = null
-    private var snackName: String? = ""
+    private var snackName: String? = " "
     private var snackPhoto: String? = ""
     private var snackDesc: String? = ""
-    private var result: Bitmap? = null
 
     companion object {
         var imageSize = 150
@@ -78,28 +79,11 @@ class CameraResultPage : AppCompatActivity() {
         }
 
 
-        val repo = Injection.provideRepository(this)
+        repo = Injection.provideRepository(this)
 
-        snackName?.let {
-            repo.isFavorite(it).observe(this) {
-                isFav = it
-                if (it) {
-                    binding.fabFav.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            this,
-                            R.drawable.ic_baseline_favorite_24
-                        )
-                    )
-                } else {
-                    binding.fabFav.setImageDrawable(
-                        ContextCompat.getDrawable(
-                            this,
-                            R.drawable.ic_baseline_favorite_border_24
-                        )
-                    )
-                }
-            }
-        }
+
+
+
 
         binding.fabFav.setOnClickListener {
             val usersEntity = CakeEntity(snackName!!,snackPhoto!!,snackDesc!!)
@@ -114,7 +98,28 @@ class CameraResultPage : AppCompatActivity() {
             val intent = Intent(this, PreCameraCapture::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP;
             startActivity(intent)
-            
+
+        }
+    }
+
+    private fun startObs(){
+        repo.isFavorite(snackName).observe(this) {
+            isFav = it
+            if (it) {
+                binding.fabFav.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this,
+                        R.drawable.ic_baseline_favorite_24
+                    )
+                )
+            } else {
+                binding.fabFav.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this,
+                        R.drawable.ic_baseline_favorite_border_24
+                    )
+                )
+            }
         }
     }
 
@@ -139,6 +144,7 @@ class CameraResultPage : AppCompatActivity() {
                         shimmerLayout.stopShimmer()
                         shimmerLayout.visibility = View.GONE
                         binding.scrollView2.visibility = View.VISIBLE
+                        startObs()
                     }
                 } else {
                     Log.e(TAG, "onFailure : " + response.message())
@@ -178,7 +184,7 @@ class CameraResultPage : AppCompatActivity() {
                         shimmerLayout.stopShimmer()
                         shimmerLayout.visibility = View.GONE
                         binding.scrollView2.visibility = View.VISIBLE
-
+                        startObs()
                     }
                 }
             }

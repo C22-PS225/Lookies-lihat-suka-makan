@@ -24,7 +24,7 @@ class CakeRepo private constructor(
         }
     }
 
-    fun isFavorite(login: String) : LiveData<Boolean> = CakeDao.isFavourite(login)
+    fun isFavorite(login: String?) : LiveData<Boolean> = CakeDao.isFavourite(login)
 
     companion object {
         @Volatile
