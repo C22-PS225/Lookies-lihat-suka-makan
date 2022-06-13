@@ -2,7 +2,7 @@
 As a machine learning engineers, we mainly contributed in making a model using Keras in TensorFlow to classify the Indonesian traditional cakes images that will be captured by Lookies. To encapsulate the machine learning path guidelines in this project, here are some points to consider:
 
 ## Machine Learning Job Desc  
-There are several step until got best model to classify the Indonesian traditional cakes, specifically:
+There are several step until get best model to classify the Indonesian traditional cakes, specifically:
 1. Collect The Dataset
 We collect around 3500 images of 16 Indonesian traditional cakes. This is our dataset, https://www.kaggle.com/datasets/widyaameliaputri/indonesian-traditional-cakes
 
