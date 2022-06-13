@@ -1,20 +1,9 @@
-package com.example.lookies
+package com.example.lookies.response
 
+import com.example.lookies.search.DataSearchPage
 import com.google.gson.annotations.SerializedName
 
-data class CariKueResponse(
-
-	@field:SerializedName("kue")
-	val kue: ArrayList<KueItem>,
-
-	@field:SerializedName("error")
-	val error: String,
-
-	@field:SerializedName("message")
-	val message: String
-)
-
-data class KueItem(
+data class PredictKueResponse(
 
 	@field:SerializedName("nama_kue")
 	val namaKue: String,

@@ -11,8 +11,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.lookies.UserPreference
-import com.example.lookies.ViewModelFactory
+import com.example.lookies.main.UserPreference
+import com.example.lookies.main.ViewModelFactory
 import com.example.lookies.databinding.FragmentAcoountInfoBinding
 import com.example.lookies.login.SignInActivity
 import com.example.lookies.login.SignInViewModel

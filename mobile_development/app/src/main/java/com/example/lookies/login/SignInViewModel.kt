@@ -2,8 +2,8 @@ package com.example.lookies.login
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.lookies.UserModel
-import com.example.lookies.UserPreference
+import com.example.lookies.data_class.UserModel
+import com.example.lookies.main.UserPreference
 import com.example.lookies.api.ApiConfig
 import kotlinx.coroutines.launch
 import retrofit2.Call

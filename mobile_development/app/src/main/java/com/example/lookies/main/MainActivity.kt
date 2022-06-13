@@ -1,4 +1,4 @@
-package com.example.lookies
+package com.example.lookies.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.lookies.R
 import com.example.lookies.camera.PreCameraCapture
 import com.example.lookies.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView

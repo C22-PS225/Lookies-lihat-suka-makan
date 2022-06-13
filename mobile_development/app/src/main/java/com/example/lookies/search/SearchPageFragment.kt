@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.lookies.*
 import com.example.lookies.api.ApiConfig
 import com.example.lookies.databinding.FragmentSearchPageBinding
+import com.example.lookies.response.GetAllResponse
+import com.example.lookies.response.KueItem2
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

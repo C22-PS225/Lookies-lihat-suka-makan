@@ -1,25 +1,21 @@
 package com.example.lookies.camera
 
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
-import com.example.lookies.CariKueResponse
-import com.example.lookies.PredictKueResponse
+import com.example.lookies.CakeEntity
+import com.example.lookies.Injection
+import com.example.lookies.response.CariKueResponse
+import com.example.lookies.response.PredictKueResponse
 import com.example.lookies.R
 import com.example.lookies.api.ApiConfig
 import com.example.lookies.databinding.ActivityCameraResultPageBinding
-import com.example.lookies.search.SearchPage
 import com.facebook.shimmer.ShimmerFrameLayout
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -33,11 +29,14 @@ import java.io.FileOutputStream
 
 
 class CameraResultPage : AppCompatActivity() {
+    private var isFav: Boolean? = null
     private lateinit var binding: ActivityCameraResultPageBinding
     private lateinit var shimmerLayout: ShimmerFrameLayout
     private var imageToDetail: String? = ""
     private var imageFromIntent: BitmapImage? = null
     private var snackName: String? = ""
+    private var snackPhoto: String? = ""
+    private var snackDesc: String? = ""
 
     companion object {
         var imageSize = 150
@@ -72,6 +71,38 @@ class CameraResultPage : AppCompatActivity() {
         binding.imgBackButton.setOnClickListener {
             finish()
         }
+
+
+        val repo = Injection.provideRepository(this)
+
+        repo.isFavorite(snackName!!).observe(this) {
+            isFav = it
+            if (it) {
+                binding.fabFav.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this,
+                        R.drawable.ic_baseline_favorite_24
+                    )
+                )
+            } else {
+                binding.fabFav.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this,
+                        R.drawable.ic_baseline_favorite_border_24
+                    )
+                )
+            }
+        }
+
+        binding.fabFav.setOnClickListener {
+            val usersEntity = CakeEntity(snackName!!,snackPhoto!!,snackDesc!!)
+            if(isFav == true){
+                repo.deleteCake(usersEntity)
+            }else{
+                repo.insertCake(usersEntity)
+            }
+        }
+
     }
 
     private fun cariKue(namaKue: String){
@@ -82,6 +113,10 @@ class CameraResultPage : AppCompatActivity() {
                     val responseBody = response.body()
                     if (responseBody != null) {
                         val itemData = responseBody.kue[0]
+                        snackName = itemData.namaKue
+                        snackPhoto = itemData.gambar
+                        snackDesc = itemData.paragaf1.substring(0,50)+"..."
+
                         binding.txtSnackName.text = itemData.namaKue
                         binding.txtParagraph1.text = itemData.paragaf1
                         binding.txtParagraph2.text = itemData.paragaf2
@@ -118,6 +153,10 @@ class CameraResultPage : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
+                        snackName = responseBody.namaKue
+                        //ini pakai gambar dari API bukan kamera
+                        snackPhoto = responseBody.gambar
+                        snackDesc = responseBody.paragaf1.substring(0,50)+"..."
                         binding.txtSnackName.text = responseBody.namaKue
                         binding.txtParagraph1.text = responseBody.paragaf1
                         binding.txtParagraph2.text = responseBody.paragaf2

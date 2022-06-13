@@ -1,16 +1,16 @@
-package com.example.lookies
+package com.example.lookies.response
 
 import com.google.gson.annotations.SerializedName
 
 data class GetAllResponse(
 
-	@field:SerializedName("kue")
+    @field:SerializedName("kue")
 	val kue: ArrayList<KueItem2>,
 
-	@field:SerializedName("error")
+    @field:SerializedName("error")
 	val error: String,
 
-	@field:SerializedName("message")
+    @field:SerializedName("message")
 	val message: String
 )
 

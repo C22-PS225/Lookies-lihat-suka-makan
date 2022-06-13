@@ -1,18 +1,17 @@
 package com.example.lookies.search
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lookies.*
 import com.example.lookies.api.ApiConfig
-import com.example.lookies.home.SpecialForYou
 import com.example.lookies.databinding.ActivitySearchPageBinding
+import com.example.lookies.response.CariKueResponse
+import com.example.lookies.response.KueItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

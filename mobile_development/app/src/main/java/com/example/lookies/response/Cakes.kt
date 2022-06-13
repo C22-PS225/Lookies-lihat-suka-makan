@@ -1,4 +1,4 @@
-package com.example.lookies
+package com.example.lookies.response
 
 import com.google.gson.annotations.SerializedName
 

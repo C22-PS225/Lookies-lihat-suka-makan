@@ -48,7 +48,7 @@
             android:name=".login.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity

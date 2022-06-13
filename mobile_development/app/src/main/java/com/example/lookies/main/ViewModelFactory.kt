@@ -1,4 +1,4 @@
-package com.example.lookies
+package com.example.lookies.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -22,22 +22,35 @@
         app:layout_constraintVertical_bias="0.95"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <ToggleButton
-        android:id="@+id/favBtn"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabFav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/favorite_cakes"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:textOff=""
-        android:textOn=""
+        android:src="@drawable/ic_baseline_favorite_border_24"
         app:layout_constraintBottom_toTopOf="@+id/fabCamera"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
+<!--    <ToggleButton-->
+<!--        android:id="@+id/favBtn"-->
+<!--        android:layout_width="35dp"-->
+<!--        android:layout_height="35dp"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:background="@drawable/favorite_cakes"-->
+<!--        android:focusable="false"-->
+<!--        android:focusableInTouchMode="false"-->
+<!--        android:textOff=""-->
+<!--        android:textOn=""-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/fabCamera"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.872"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="1.0" />-->
 
     <ScrollView
         android:id="@+id/scrollView2"

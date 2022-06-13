@@ -1,4 +1,4 @@
-package com.example.lookies
+package com.example.lookies.favorite
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

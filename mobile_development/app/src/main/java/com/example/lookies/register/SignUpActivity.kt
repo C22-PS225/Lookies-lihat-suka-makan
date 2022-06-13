@@ -13,8 +13,8 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.example.lookies.UserPreference
-import com.example.lookies.ViewModelFactory
+import com.example.lookies.main.UserPreference
+import com.example.lookies.main.ViewModelFactory
 import com.example.lookies.databinding.ActivitySignUpBinding
 import com.example.lookies.login.PassEditText
 import com.example.lookies.login.SignInActivity

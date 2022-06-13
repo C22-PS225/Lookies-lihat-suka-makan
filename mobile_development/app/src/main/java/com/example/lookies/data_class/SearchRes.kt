@@ -1,4 +1,4 @@
-package com.example.lookies
+package com.example.lookies.data_class
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -1,13 +1,12 @@
 package com.example.lookies.api
 
-import com.example.lookies.CariKueResponse
-import com.example.lookies.GetAllResponse
-import com.example.lookies.PredictKueResponse
+import com.example.lookies.response.CariKueResponse
+import com.example.lookies.response.GetAllResponse
+import com.example.lookies.response.PredictKueResponse
 import com.example.lookies.login.LoginResponse
 import com.example.lookies.register.RegisterResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.http.*
 
 interface Api {

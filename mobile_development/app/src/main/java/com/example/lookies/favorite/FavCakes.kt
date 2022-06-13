@@ -1,4 +1,4 @@
-package com.example.lookies
+package com.example.lookies.favorite
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

@@ -1,19 +1,13 @@
 package com.example.lookies.search
 
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.lookies.KueItem2
-import com.example.lookies.R
+import com.example.lookies.response.KueItem2
 import com.example.lookies.camera.CameraResultPage
 import com.example.lookies.databinding.ItemSearchBinding
-import javax.sql.DataSource
 
 class ListSearchPageAdapter(private val listSearchPage: ArrayList<KueItem2>) : RecyclerView.Adapter<ListSearchPageAdapter.ListViewHolder>() {
     class ListViewHolder(var binding: ItemSearchBinding) : RecyclerView.ViewHolder(binding.root)

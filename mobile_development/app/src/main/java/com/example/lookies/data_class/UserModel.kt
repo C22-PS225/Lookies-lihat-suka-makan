@@ -1,4 +1,4 @@
-package com.example.lookies
+package com.example.lookies.data_class
 
 data class UserModel(
     val token: String,
