@@ -18,7 +18,7 @@ Indonesia is a country rich in traditional cakes. Different regions have their o
 Each of learning path in this team works collaboratively to deliver the product within the scope below:  
 * Develop Lookies as a mobile app to provide information and education about various kinds of Indonesian traditional cake such as the taste, the story behind the cake and the ingredients and this application is aimed for tourists both domestic and abroad.  
 * Machine learning team will create a machine learning model to classify the Indonesian traditional cakes utlizing the TensorFlow library for building the Neural Network design (Deep Learning) and using the dataset from Kaggle, Google search, as well as self-captured images of cakes.  
-* The Cloud Computing team will set up a cloud service to train a model, create an image storage for the dataset and image recognition API (AutoML Vision).  
+* The Cloud Computing team will set up a cloud service to deploy machine learning model in compute engine and use cloud SQL and cloud storage to store data such as cake and user data.  We also made a rest api application as a data communication.
 * The Mobile Development team will create a UI Design for the application and implement it to the android application, then completing the application with API endpoint from Cloud which contains the traditional cakes dataset and ML model that has been trained.  
 
 ## Disclaimer
