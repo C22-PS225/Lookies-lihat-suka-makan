@@ -19,7 +19,7 @@ class FavoriteCakesActivity : AppCompatActivity() {
         binding.rvFavCakes.layoutManager = LinearLayoutManager(this)
         val repo = Injection.provideRepository(this)
         repo.getFavUser().observe(this) {
-            adapter.setListFavCakes(it)
+            adapter.setListFavGithubUser(it)
         }
         adapter = FavCakeAdapter()
         binding.rvFavCakes.setHasFixedSize(true)

@@ -8,24 +8,23 @@ class CakeRepo private constructor(
     private val apiService: Api,
     private val CakeDao: CakeDao,
     private val appExecutors: AppExecutors
-) {
+){
 
     fun getFavUser(): LiveData<List<CakeEntity>> = CakeDao.getUsers()
 
-    fun insertCake(cakes: CakeEntity) {
+    fun insertCake(user: CakeEntity){
         appExecutors.diskIO.execute {
-            CakeDao.insertCake(cakes)
+            CakeDao.insertCake(user)
         }
     }
 
-    fun deleteCake(cakes: CakeEntity) {
+    fun deleteCake(user: CakeEntity){
         appExecutors.diskIO.execute {
-            CakeDao.deleteCake(cakes)
+            CakeDao.deleteCake(user)
         }
     }
 
-
-    fun isFavorite(name: String?) : LiveData<Boolean> = CakeDao.isFavourite(name)
+    fun isFavorite(login: String?) : LiveData<Boolean> = CakeDao.isFavourite(login)
 
     companion object {
         @Volatile
