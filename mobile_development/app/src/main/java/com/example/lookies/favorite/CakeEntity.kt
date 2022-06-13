@@ -13,8 +13,8 @@ class CakeEntity(
     @field:PrimaryKey
     var name: String,
 
-    @field:ColumnInfo(name = "avatar_url")
-    var avatarUrl: String,
+    @field:ColumnInfo(name = "gambar")
+    var gambar: String,
 
     @field:ColumnInfo(name = "desc")
     var desc: String,

@@ -2,17 +2,20 @@ package com.example.lookies.favorite
 
 import androidx.recyclerview.widget.DiffUtil
 
-class CakeCallback(private val mOldGithubUserList: ArrayList<CakeEntity>, private val mNewGithubUserList: ArrayList<CakeEntity>) : DiffUtil.Callback() {
+class CakeCallback(
+    private val mOldFavCakeList: ArrayList<CakeEntity>,
+    private val mNewFavCakeList: ArrayList<CakeEntity>
+) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
-        return mOldGithubUserList.size
+        return mOldFavCakeList.size
     }
 
     override fun getNewListSize(): Int {
-        return  mNewGithubUserList.size
+        return mNewFavCakeList.size
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return mOldGithubUserList[oldItemPosition].name == mNewGithubUserList[newItemPosition].name
+        return mOldFavCakeList[oldItemPosition].name == mNewFavCakeList[newItemPosition].name
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
